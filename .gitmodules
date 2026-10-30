@@ -1,3 +1,6 @@
 [submodule "generators/spectacular-settlements"]
 	path = generators/spectacular-settlements
 	url = https://github.com/Tadeu-Raphael/rpg-spectacular-settlements-generator.git
+[submodule "generators/forbidden-lands"]
+	path = generators/forbidden-lands
+	url = https://github.com/Tadeu-Raphael/forbidden-lands-generator.git

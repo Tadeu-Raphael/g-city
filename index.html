@@ -1,128 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-City - RPG Settlement Generator</title>
-    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/stylesheet.css">
+    <meta name="theme-color" content="#17251f">
+    <meta name="description" content="G-City reúne ferramentas para criar mundos e assentamentos de RPG.">
+    <title>G-City — Ferramentas para RPG</title>
+    <link rel="stylesheet" href="css/landing.css">
 </head>
 
-<body class="index-page">
-    <div id="site-header"></div>
-    <main class="index-main container py-5">
-        <section class="main-menu card border-0 shadow-lg">
-            <div class="card-body p-3 p-md-4">
-            <h1 data-i18n class="menu-title h2 fw-bold">🏰 G-City - RPG Settlement Generator</h1>
-            <p data-i18n class="menu-description lead text-secondary">
-                Choose a settlement type to generate:
+<body>
+    <div class="site-shell" id="top">
+        <header class="site-header">
+            <div class="header-inner">
+                <a class="site-brand" href="./" aria-label="G-City, início">
+                    <span aria-hidden="true">🏰</span>
+                    <span>G-City</span>
+                </a>
+                <nav class="site-navigation" aria-label="Navegação principal">
+                    <a href="#geradores">Geradores</a>
+                    <a href="#sobre">Sobre</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="site-main">
+            <section class="generator-section" id="geradores" aria-labelledby="generator-heading">
+                <p class="eyebrow">BIBLIOTECA DE GERADORES</p>
+                <h1 id="generator-heading">Escolha sua ferramenta</h1>
+                <p class="section-description">Explore ferramentas para dar vida ao seu cenário.</p>
+
+                <div class="generator-grid">
+                    <div class="generator-slot generator-slot--left"></div>
+                    <div class="generator-slot generator-slot--center">
+                        <a class="generator-card" href="generators/spectacular-settlements/index.html">
+                            <span class="card-icon" aria-hidden="true">🏰</span>
+                            <span class="card-category">GERADOR DE CIDADES</span>
+                            <h2>Spectacular Settlements Generator</h2>
+                            <p>Crie postos comerciais, vilas, cidades, capitais e fortalezas para suas aventuras.</p>
+                            <span class="card-action">Abrir gerador <span aria-hidden="true">→</span></span>
+                        </a>
+                    </div>
+                    <div class="generator-slot generator-slot--right"></div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer" id="sobre">
+            <p class="footer-caption">G-City · Ferramentas para aventuras de RPG</p>
+            <p class="footer-credit">
+                Feito por
+                <a href="https://github.com/Tadeu-Raphael" target="_blank" rel="noopener noreferrer">Tadeu Raphael</a>
             </p>
-
-            <div class="row g-3" id="menu-main">
-                <div class="col-12">
-                    <a class="city-card capitals-card card h-100 text-decoration-none" href="capitals.html">
-                        <div class="card-body py-4">
-                            <h2 data-i18n class="city-title capitals-title card-title fw-semibold">👑 Capitals</h2>
-                            <p data-i18n class="city-description card-text text-secondary">The largest settlements, with government, nobility, espionage, armies and many districts</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-12">
-                    <a class="city-card cities-card card h-100 text-decoration-none" href="cities.html">
-                        <div class="card-body py-4">
-                            <h2 data-i18n class="city-title cities-title card-title fw-semibold">🏰 Cities</h2>
-                            <p data-i18n class="city-description card-text text-secondary">Large metropolises split into districts, with politics, crime and intrigue</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-12">
-                    <a class="city-card town-card card h-100 text-decoration-none" href="towns.html">
-                        <div class="card-body py-4">
-                            <h2 data-i18n class="city-title town-title card-title fw-semibold">🏙️ Towns</h2>
-                            <p data-i18n class="city-description card-text text-secondary">Established towns with markets, defenses and full infrastructure</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-12">
-                    <a class="city-card village-card card h-100 text-decoration-none" href="villages.html">
-                        <div class="card-body py-4">
-                            <h2 data-i18n class="city-title village-title card-title fw-semibold">🌲 Villages</h2>
-                            <p data-i18n class="city-description card-text text-secondary">Smaller, simpler communities focused on basic resources</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-12">
-                    <a class="city-card trading-card card h-100 text-decoration-none" href="trading-post.html">
-                        <div class="card-body py-4">
-                            <h2 data-i18n class="city-title trading-title card-title fw-semibold">🛒 Trading Posts</h2>
-                            <p data-i18n class="city-description card-text text-secondary">Strategic commercial hubs, markets and trade routes</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-12">
-                    <a class="city-card fortresses-card card h-100 text-decoration-none" href="#" id="fortresses-open" role="button">
-                        <div class="card-body py-4">
-                            <h2 data-i18n class="city-title fortresses-title card-title fw-semibold">🛡️ Fortresses</h2>
-                            <p data-i18n class="city-description card-text text-secondary">Keeps, castles and strongholds: cumulative defensive structures</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-12">
-                    <a class="city-card extras-menu-card card h-100 text-decoration-none" href="extras.html">
-                        <div class="card-body py-4">
-                            <h2 data-i18n class="city-title extras-title card-title fw-semibold">✦ Extras</h2>
-                            <p data-i18n class="city-description card-text text-secondary">Encounters, rumors, taverns, hooks and other extra details only</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div id="menu-fortresses" class="d-none">
-                <div class="row g-3">
-                    <div class="col-12">
-                        <a class="city-card fortresses-card card h-100 text-decoration-none" href="keep.html">
-                            <div class="card-body py-4">
-                                <h2 data-i18n class="city-title fortresses-title card-title fw-semibold">🏯 Keep</h2>
-                                <p data-i18n class="city-description card-text text-secondary">Just the main tower of the fortress</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-12">
-                        <a class="city-card fortresses-card card h-100 text-decoration-none" href="castle.html">
-                            <div class="card-body py-4">
-                                <h2 data-i18n class="city-title fortresses-title card-title fw-semibold">🏰 Castle</h2>
-                                <p data-i18n class="city-description card-text text-secondary">A keep plus walls, towers, moat and the rest of the castle</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-12">
-                        <a class="city-card fortresses-card card h-100 text-decoration-none" href="stronghold.html">
-                            <div class="card-body py-4">
-                                <h2 data-i18n class="city-title fortresses-title card-title fw-semibold">🛡️ Stronghold</h2>
-                                <p data-i18n class="city-description card-text text-secondary">A reinforced keep and castle, with brutal defenses and stylistic additions</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-12 text-center">
-                        <button data-i18n class="btn btn-outline-secondary generation-button" type="button" id="fortresses-back">← Back</button>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </section>
-    </main>
-    <div id="site-footer"></div>
-
-    <script src="js/i18n.js" defer></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
-    <script src="js/layout.js" defer></script>
-    <script src="js/index.js" defer></script>
+        </footer>
+    </div>
 </body>
 </html>

@@ -6,7 +6,7 @@ const MAIN_DESCRIPTION = menuDescription.textContent;
 function showFortresses(visible) {
     mainMenu.classList.toggle("d-none", visible);
     fortressesMenu.classList.toggle("d-none", !visible);
-    menuDescription.textContent = visible ? "Escolha o tipo de fortaleza para gerar:" : MAIN_DESCRIPTION;
+    menuDescription.textContent = visible ? "Choose the fortress type to generate:" : MAIN_DESCRIPTION;
 }
 
 document.getElementById("fortresses-open").addEventListener("click", event => {

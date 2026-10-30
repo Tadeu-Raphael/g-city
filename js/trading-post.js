@@ -44,16 +44,16 @@ function isInRange(x, min, max) {
 }
 
 function displayMessage(element, message) {
-    // Criar um elemento <div> para a mensagem
+    // Create a <div> element for the message
     const messageDiv = document.createElement("div");
     messageDiv.innerHTML = message;
 
-    // Limpar o conteúdo atual do elemento "demographics"
+    // Clear the current content of the "demographics" element
     while (element.firstChild) {
         element.removeChild(element.firstChild);
     }
 
-    // Adicionar a mensagem ao elemento "demographics"
+    // Add the message to the "demographics" element
     element.appendChild(messageDiv);
 }
 

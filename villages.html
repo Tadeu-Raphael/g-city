@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gcity</title>
+    <title>G-City - Village Generator</title>
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/stylesheet.css">
 </head>
@@ -12,9 +12,9 @@
 <body class="villages-page generation-page">
     <div id="site-header"></div>
     <nav class="generation-actions container d-flex justify-content-center align-items-center flex-wrap gap-2 my-4" aria-label="Ações da geração">
-        <button class="btn btn-primary generation-button reset-btn" type="button" onclick="window.location.reload()">🎲 Gerar novamente</button>
-        <button class="btn btn-success generation-button" type="button" onclick="exportGeneration()">⬇ Exportar TXT</button>
-        <a href="index.html" class="btn btn-outline-secondary generation-button menu-button">← Menu principal</a>
+        <button class="btn btn-primary generation-button reset-btn" type="button" onclick="window.location.reload()">🎲 Roll again</button>
+        <button class="btn btn-success generation-button" type="button" onclick="exportGeneration()">⬇ Export TXT</button>
+        <a href="index.html" class="btn btn-outline-secondary generation-button menu-button">← Main menu</a>
     </nav>
 
     <main class="generation-content container card shadow-sm border-0 my-4 p-4 p-md-5">
@@ -86,11 +86,13 @@
         </div>
     </div>
     </main>
-    <section id="generation-info" class="generation-info container card shadow-sm border-0 my-4 p-4 p-md-5" aria-label="Informa&ccedil;&otilde;es da gera&ccedil;&atilde;o"></section>
+    <section id="generation-info" class="generation-info container card shadow-sm border-0 my-4 p-4 p-md-5" aria-label="Generation information"></section>
     <div id="site-footer"></div>
 <script src="js/generation-info.js" defer></script>
 <script src="js/villages.js" defer></script>
 <script src="js/villages-page.js" defer></script>
+<script src="js/extras-data.js" defer></script>
+<script src="js/extras.js" defer></script>
 <script src="js/generation-export.js" defer></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
 <script src="js/layout.js" defer></script>

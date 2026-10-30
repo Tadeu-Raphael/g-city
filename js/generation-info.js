@@ -149,41 +149,41 @@ function renderGenerationInfo() {
     const rolls = generationLog.rolls.map(describeRoll);
 
     title.className = "h4 fw-semibold text-center border-bottom pb-2 mb-4 mt-0";
-    title.textContent = "Informações";
+    title.textContent = "Information";
     container.replaceChildren(title);
 
     container.appendChild(createInfoSection(
-        "Modificadores aplicados",
+        "Applied modifiers",
         modifiers.length
             ? createTable(
-                ["Modificador", "Total", "Origem"],
+                ["Modifier", "Total", "Source"],
                 modifiers.map(item => [item.label, formatSigned(item.total), item.sources.join(", ")])
             )
-            : createEmptyNote("Nenhum modificador foi gerado nesta rolagem.")
+            : createEmptyNote("No modifiers were generated in this roll.")
     ));
 
     container.appendChild(createInfoSection(
-        "Rolagens de dados",
+        "Dice rolls",
         rolls.length
             ? createTable(
-                ["Campo", "Dado", "Resultado do dado", "Modificador", "Total"],
+                ["Field", "Die", "Die result", "Modifier", "Total"],
                 rolls.map(item => [item.field, item.dice, item.value, item.modifier, item.total])
             )
-            : createEmptyNote("Nenhuma rolagem foi registrada.")
+            : createEmptyNote("No rolls were recorded.")
     ));
 }
 
 function formatGenerationInfoText() {
-    const lines = ["Informações", "", "Modificadores aplicados"];
+    const lines = ["Information", "", "Applied modifiers"];
     const modifiers = summarizeModifiers();
 
     if (modifiers.length) {
         modifiers.forEach(item => lines.push(`${item.label}: ${formatSigned(item.total)} - ${item.sources.join(", ")}`));
     } else {
-        lines.push("Nenhum modificador foi gerado nesta rolagem.");
+        lines.push("No modifiers were generated in this roll.");
     }
 
-    lines.push("", "Rolagens de dados");
+    lines.push("", "Dice rolls");
     generationLog.rolls.map(describeRoll).forEach(item => {
         const modifier = item.modifier === "-" ? "" : ` ${item.modifier}`;
         lines.push(`${item.field}: ${item.dice} = ${item.value}${modifier} -> ${item.total}`);

@@ -3,7 +3,9 @@ function exportGeneration() {
     const figures = content.querySelectorAll(".fortress-figure");
     figures.forEach(item => { item.style.display = "none"; });
     const lines = [];
-    const pageType = document.body.classList.contains("villages-page")
+    const pageType = document.body.classList.contains("extras-page")
+        ? "Extras"
+        : document.body.classList.contains("villages-page")
         ? "Village"
         : document.body.classList.contains("towns-page")
             ? "Town"
@@ -36,6 +38,10 @@ function exportGeneration() {
 
     if (typeof formatGenerationInfoText === "function") {
         lines.push(...formatGenerationInfoText());
+    }
+
+    if (typeof formatExtrasText === "function") {
+        lines.push(...formatExtrasText());
     }
 
     const file = new Blob(["\uFEFF", `${pageType} Generation\r\n\r\n`, lines.join("\r\n")], {

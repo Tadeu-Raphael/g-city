@@ -1,5 +1,6 @@
 (function () {
-    const STORAGE_KEY = "gcity-lang";
+    const STORAGE_KEY = "spectacular-settlements-lang";
+    const LEGACY_STORAGE_KEY = "gcity-lang";
     const SUPPORTED = ["en", "pt"];
 
     // English text is the key; only Portuguese needs entries.
@@ -20,7 +21,7 @@
         "🛡️ Stronghold": "🛡️ Fortaleza",
         "Trading Posts": "Postos de Comércio",
         "Extras": "Extras",
-        "G-City · Settlement generator for RPG adventures": "G-City · Gerador de assentamentos para aventuras de RPG",
+        "Spectacular Settlements Generator · Settlement generator for RPG adventures": "Spectacular Settlements Generator · Gerador de assentamentos para aventuras de RPG",
         "Made by": "Feito por",
         "Language": "Idioma",
         "Switch to English": "Mudar para inglês",
@@ -55,19 +56,19 @@
         "Moat": "Fosso",
 
         // Page titles
-        "G-City - RPG Settlement Generator": "G-City - Gerador de Assentamentos de RPG",
-        "G-City - Town Generator": "G-City - Gerador de Cidades",
-        "G-City - Village Generator": "G-City - Gerador de Vilas",
-        "G-City - City Generator": "G-City - Gerador de Cidades Grandes",
-        "G-City - Capital Generator": "G-City - Gerador de Capitais",
-        "G-City - Trading Post Generator": "G-City - Gerador de Postos de Comércio",
-        "G-City - Keep Generator": "G-City - Gerador de Torres de Menagem",
-        "G-City - Castle Generator": "G-City - Gerador de Castelos",
-        "G-City - Stronghold Generator": "G-City - Gerador de Fortalezas",
-        "G-City - Extras Generator": "G-City - Gerador de Extras",
+        "Spectacular Settlements Generator - RPG Settlement Generator": "Spectacular Settlements Generator - Gerador de Assentamentos de RPG",
+        "Spectacular Settlements Generator - Town Generator": "Spectacular Settlements Generator - Gerador de Cidades",
+        "Spectacular Settlements Generator - Village Generator": "Spectacular Settlements Generator - Gerador de Vilas",
+        "Spectacular Settlements Generator - City Generator": "Spectacular Settlements Generator - Gerador de Cidades Grandes",
+        "Spectacular Settlements Generator - Capital Generator": "Spectacular Settlements Generator - Gerador de Capitais",
+        "Spectacular Settlements Generator - Trading Post Generator": "Spectacular Settlements Generator - Gerador de Postos de Comércio",
+        "Spectacular Settlements Generator - Keep Generator": "Spectacular Settlements Generator - Gerador de Torres de Menagem",
+        "Spectacular Settlements Generator - Castle Generator": "Spectacular Settlements Generator - Gerador de Castelos",
+        "Spectacular Settlements Generator - Stronghold Generator": "Spectacular Settlements Generator - Gerador de Fortalezas",
+        "Spectacular Settlements Generator - Extras Generator": "Spectacular Settlements Generator - Gerador de Extras",
 
         // Index
-        "🏰 G-City - RPG Settlement Generator": "🏰 G-City - Gerador de Assentamentos de RPG",
+        "🏰 Spectacular Settlements Generator - RPG Settlement Generator": "🏰 Spectacular Settlements Generator - Gerador de Assentamentos de RPG",
         "Choose a settlement type to generate:": "Escolha um tipo de assentamento para gerar:",
         "Choose the fortress type to generate:": "Escolha o tipo de fortaleza para gerar:",
         "👑 Capitals": "👑 Capitais",
@@ -210,7 +211,7 @@
 
     function detect() {
         let stored = null;
-        try { stored = localStorage.getItem(STORAGE_KEY); } catch (error) { /* storage unavailable */ }
+        try { stored = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY); } catch (error) { /* storage unavailable */ }
         if (SUPPORTED.includes(stored)) return stored;
         const browser = (navigator.languages && navigator.languages[0]) || navigator.language || "";
         return browser.toLowerCase().startsWith("pt") ? "pt" : "en";
@@ -239,7 +240,7 @@
 
     /* ---------- Seeded randomness: switching language replays the same roll ---------- */
 
-    const REPLAY_KEY = "gcity-replay";
+    const REPLAY_KEY = "spectacular-settlements-replay";
     const page = location.pathname.split("/").pop() || "index.html";
     let replay = null;
     try {

@@ -135,8 +135,8 @@
             modalNode = element("div", "modal fade extra-modal");
             modalNode.tabIndex = -1;
             modalNode.innerHTML = `<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"><div class="modal-content">
-                <div class="modal-header"><h5 class="modal-title"><span class="extra-badge">✦ Extra</span> <span data-role="title"></span></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                <div class="modal-header"><h5 class="modal-title"><span class="extra-badge">${t("✦ Extra")}</span> <span data-role="title"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="${t("Close")}"></button></div>
                 <div class="modal-body" data-role="body"></div></div></div>`;
             document.body.appendChild(modalNode);
         }
@@ -149,11 +149,11 @@
         const base = ALIASES[name] || name;
         const node = element("div");
         const description = GLOSSARY[name] || GLOSSARY[base] || BOOK.fort[name];
-        node.appendChild(element("p", "", escapeHtml(description || "No additional description.")));
+        node.appendChild(element("p", "", escapeHtml(description || t("No additional description."))));
 
         const variants = VARIANTS[base];
         if (variants) {
-            node.appendChild(element("p", "", `<b>Versions:</b> ${variants[0]} (poor) / ${variants[1]} (fine)`));
+            node.appendChild(element("p", "", `<b>${t("Versions")}:</b> ${variants[0]} (${t("poor")}) / ${variants[1]} (${t("fine")})`));
         }
         const cats = categoriesFor(name);
         if (cats.length) {
@@ -163,7 +163,7 @@
         }
         if (base === "Tavern") {
             const holder = element("div", "extra-result mt-3");
-            const button = element("button", "btn btn-sm extra-button", "🍺 Generate tavern (Tavern Builder)");
+            const button = element("button", "btn btn-sm extra-button", t("🍺 Generate tavern (Tavern Builder)"));
             button.type = "button";
             button.addEventListener("click", () => { holder.replaceChildren(buildTavern(false)); });
             node.append(button, holder);
@@ -214,7 +214,7 @@
                     term.dataset.term = isFortress ? Object.keys(BOOK.fort).find(k => k.toLowerCase() === match.toLowerCase()) : match;
                     term.tabIndex = 0;
                     term.setAttribute("role", "button");
-                    term.title = "Extra: click to see the description";
+                    term.title = t("Extra: click to see the description");
                     fragment.appendChild(term);
                     last = offset + match.length;
                     return match;
@@ -258,19 +258,19 @@
         const total = die + mod;
         const box = element("div", "extra-result");
         const lines = [`Encounter check: d20 = ${die} ${signed(mod)} = ${total} (needs ${threshold}+)`];
-        box.appendChild(element("p", "mb-1", `<b>Check:</b> d20 = ${die} ${signed(mod)} = <b>${total}</b> (needs ${threshold}+)`));
+        box.appendChild(element("p", "mb-1", `<b>${t("Check")}:</b> d20 = ${die} ${signed(mod)} = <b>${total}</b> (${t("needs")} ${threshold}+)`));
 
         if (total < threshold && !force) {
-            box.appendChild(element("p", "mb-0", "No urban encounter this time."));
+            box.appendChild(element("p", "mb-0", t("No urban encounter this time.")));
             lines.push("No urban encounter.");
         } else {
             const index = roll(20);
             const enc = BOOK.enc[index - 1];
-            box.appendChild(element("p", "mb-1", `<b>Encounter (d20 = ${index}):</b> ${escapeHtml(enc.name)}`));
+            box.appendChild(element("p", "mb-1", `<b>${t("Encounter")} (d20 = ${index}):</b> ${escapeHtml(enc.name)}`));
             box.appendChild(element("p", "mb-0", escapeHtml(enc.text)));
             lines.push(`Encounter (d20 = ${index}): ${enc.name} - ${enc.text}`);
         }
-        log("Urban encounter", lines);
+        log(t("Urban encounter"), lines);
         return box;
     }
 
@@ -278,8 +278,8 @@
         const die = roll(20);
         const issue = BOOK.pers.find(p => { const [a, b] = p.range.split("-").map(Number); return die >= a && die <= (b || a); });
         const box = element("div", "extra-result");
-        box.appendChild(element("p", "mb-0", `<b>Personnel issue (d20 = ${die}):</b> ${escapeHtml(issue.name)}. ${escapeHtml(issue.text)}`));
-        log("NPC personnel issue", [`d20 = ${die}: ${issue.name}. ${issue.text}`]);
+        box.appendChild(element("p", "mb-0", `<b>${t("Personnel issue")} (d20 = ${die}):</b> ${escapeHtml(issue.name)}. ${escapeHtml(issue.text)}`));
+        log(t("NPC personnel issue"), [`d20 = ${die}: ${issue.name}. ${issue.text}`]);
         return box;
     }
 
@@ -302,8 +302,8 @@
         let rerolled = false;
         if (!pool.includes(rumor)) { rumor = pick(pool); rerolled = true; }
         const box = element("div", "extra-result");
-        box.appendChild(element("p", "mb-0", `<b>Rumor (d100 = ${die}${rerolled ? ", rerolled: does not apply to this settlement type" : ""}):</b> ${escapeHtml(rumor.text)}`));
-        log("Rumor", [`d100 = ${die}${rerolled ? " (rerolled)" : ""}: ${rumor.text}`]);
+        box.appendChild(element("p", "mb-0", `<b>${t("Rumor")} (d100 = ${die}${rerolled ? ", " + t("rerolled: does not apply to this settlement type") : ""}):</b> ${escapeHtml(rumor.text)}`));
+        log(t("Rumor"), [`d100 = ${die}${rerolled ? " (rerolled)" : ""}: ${rumor.text}`]);
         return box;
     }
 
@@ -320,9 +320,9 @@
         const reputation = REPUTATION[reputationDie - 1];
         const name = `The ${pick(NAME_FIRST)} ${pickSlash(NAME_SECOND)}`;
         const patronDie = roll(8);
-        const patrons = patronDie <= 2 ? `Few-to-None (${Math.max(roll(4) - 1, 0)} patrons)` : patronDie <= 6 ? "Usual Crowd (up to about half capacity)" : "Crowded";
+        const patrons = patronDie <= 2 ? `${t("Few-to-None")} (${Math.max(roll(4) - 1, 0)} ${t("patrons")})` : patronDie <= 6 ? t("Usual Crowd (up to about half capacity)") : t("Crowded");
         const staffDie = roll(8);
-        const staff = staffDie <= 2 ? "Short-Staffed" : staffDie <= 6 ? "Appropriate" : "Overstaffed";
+        const staff = staffDie <= 2 ? t("Short-Staffed") : staffDie <= 6 ? t("Appropriate") : t("Overstaffed");
         const food = [rollFood("standard"), rollFood("standard")];
         const drinks = [pick(DRINKS_SOFT), pick(DRINKS_ALC), pick(DRINKS_ALC)];
 
@@ -335,9 +335,9 @@
             ["Food", food.map(f => `${f.name} <small class="text-muted">(${f.tier})</small>`).join(", ")],
             ["Drinks", drinks.join(", ")]
         ];
-        box.innerHTML = `<dl class="extra-dl mb-0">${rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>`;
+        box.innerHTML = `<dl class="extra-dl mb-0">${rows.map(([k, v]) => `<dt>${t(k)}</dt><dd>${v}</dd>`).join("")}</dl>`;
         if (logIt) {
-            log("Tavern (Tavern Builder)", rows.map(([k, v]) => `${k}: ${v.replace(/<[^>]+>/g, "")}`));
+            log(t("Tavern (Tavern Builder)"), rows.map(([k, v]) => `${k}: ${v.replace(/<[^>]+>/g, "")}`));
         }
         return box;
     }
@@ -352,16 +352,16 @@
             ["Local writing", pick(WRITING)]
         ];
         const box = element("div", "extra-result");
-        box.innerHTML = `<dl class="extra-dl mb-0">${lines.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>`;
-        log("Scene details", lines.map(([k, v]) => `${k}: ${v}`));
+        box.innerHTML = `<dl class="extra-dl mb-0">${lines.map(([k, v]) => `<dt>${t(k)}</dt><dd>${v}</dd>`).join("")}</dl>`;
+        log(t("Scene details"), lines.map(([k, v]) => `${k}: ${v}`));
         return box;
     }
 
     function buildHook() {
         const lines = Object.entries(HOOK).map(([k, list]) => [k, pick(list)]);
         const box = element("div", "extra-result");
-        box.innerHTML = `<dl class="extra-dl mb-0">${lines.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>`;
-        log("Adventure hook", lines.map(([k, v]) => `${k}: ${v}`));
+        box.innerHTML = `<dl class="extra-dl mb-0">${lines.map(([k, v]) => `<dt>${t(k)}</dt><dd>${v}</dd>`).join("")}</dl>`;
+        log(t("Adventure hook"), lines.map(([k, v]) => `${k}: ${v}`));
         return box;
     }
 
@@ -375,8 +375,8 @@
             ["Game", pick(GAME)]
         ];
         const box = element("div", "extra-result");
-        box.innerHTML = `<dl class="extra-dl mb-0">${lines.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>`;
-        log("Local production", lines.map(([k, v]) => `${k}: ${v}`));
+        box.innerHTML = `<dl class="extra-dl mb-0">${lines.map(([k, v]) => `<dt>${t(k)}</dt><dd>${v}</dd>`).join("")}</dl>`;
+        log(t("Local production"), lines.map(([k, v]) => `${k}: ${v}`));
         return box;
     }
 
@@ -384,11 +384,11 @@
 
     function section(title, hint, buttons) {
         const wrap = element("section", "extra-section");
-        wrap.appendChild(element("h3", "", `${title} <small class="text-muted fw-normal">${hint}</small>`));
+        wrap.appendChild(element("h3", "", `${t(title)} <small class="text-muted fw-normal">${t(hint)}</small>`));
         const actions = element("div", "d-flex justify-content-center flex-wrap gap-2 mb-2");
         const output = element("div", "extra-output");
         buttons.forEach(([label, builder, append]) => {
-            const button = element("button", "btn btn-sm extra-button", label);
+            const button = element("button", "btn btn-sm extra-button", t(label));
             button.type = "button";
             button.addEventListener("click", () => {
                 const result = builder();
@@ -410,16 +410,16 @@
         if (!info && !root) return;
 
         const card = element("section", "extras-card generation-info container card shadow-sm border-0 my-4 p-4 p-md-5");
-        card.setAttribute("aria-label", "Extras");
-        card.appendChild(element("h2", "h4 fw-semibold text-center border-bottom pb-2 mb-4 mt-0", `<span class="extra-badge">✦ Extra</span> Extras`));
-        card.appendChild(element("p", "text-center text-muted mb-0", "Optional content from Appendices A-D. Terms marked with a purple ✦ are extras and open a description when clicked."));
+        card.setAttribute("aria-label", t("Extras"));
+        card.appendChild(element("h2", "h4 fw-semibold text-center border-bottom pb-2 mb-4 mt-0", `<span class="extra-badge">✦ Extra</span> ${t("Extras")}`));
+        card.appendChild(element("p", "text-center text-muted mb-0", t("Optional content from Appendices A-D. Terms marked with a purple ✦ are extras and open a description when clicked.")));
 
         if (!isFortress) {
             const encounter = element("section", "extra-section");
-            encounter.appendChild(element("h3", "", "Urban encounters"));
+            encounter.appendChild(element("h3", "", t("Urban encounters")));
             const hint = element("p", "text-muted small mb-2");
             const controls = element("div", "extra-controls d-flex justify-content-center align-items-center flex-wrap gap-2 mb-2");
-            const label = element("label", "form-label mb-0", "Encounter modifier");
+            const label = element("label", "form-label mb-0", t("Encounter modifier"));
             const input = element("input", "form-control form-control-sm w-auto");
             const initial = encounterModifier();
             label.htmlFor = "extra-encounter-mod";
@@ -429,15 +429,15 @@
             input.value = String(initial.value);
             input.style.width = "5rem";
             const updateHint = () => {
-                const village = pageType === "village" ? " Villages have no table of their own, so the Trading Post/Town rule is used (optional)." : "";
-                hint.textContent = `d20 + modifier must reach ${THRESHOLD[pageType]}+ for an encounter.${village}`;
+                const village = pageType === "village" ? " " + t("Villages have no table of their own, so the Trading Post/Town rule is used (optional).") : "";
+                hint.textContent = `${t("d20 + modifier must reach")} ${THRESHOLD[pageType]}+ ${t("for an encounter.")}${village}`;
             };
             updateHint();
             const getMod = () => Number.parseInt(input.value, 10) || 0;
             const output = element("div", "extra-output");
             const actions = element("div", "d-flex justify-content-center flex-wrap gap-2 mb-2");
             [["⚔ Generate encounter", false], ["🎯 Force encounter (no check)", true]].forEach(([text, force]) => {
-                const button = element("button", "btn btn-sm extra-button", text);
+                const button = element("button", "btn btn-sm extra-button", t(text));
                 button.type = "button";
                 button.addEventListener("click", () => output.prepend(buildEncounter(force, getMod())));
                 actions.appendChild(button);
@@ -455,7 +455,7 @@
             card.appendChild(section("Personnel issues", "For any NPC the party interacts with.", [["🧑 Generate issue", buildPersonnel, true]]));
             if (root) {
                 const places = element("section", "extra-section");
-                places.appendChild(element("h3", "", `Location glossary <small class="text-muted fw-normal">Appendix A</small>`));
+                places.appendChild(element("h3", "", `${t("Location glossary")} <small class="text-muted fw-normal">${t("Appendix A")}</small>`));
                 const chips = element("div", "extra-chips justify-content-center");
                 Object.keys(BOOK.loc).forEach(name => {
                     const chip = element("button", "extra-chip extra-chip-button", name);
@@ -470,7 +470,7 @@
             card.appendChild(section("Personnel issues", "Appendix B table for garrison and staff.", [["🧑 Generate issue", buildPersonnel, true]]));
             card.appendChild(section("Adventure hook", "Hook/Situation Builder.", [["🎣 Generate hook", buildHook, true]]));
             const glossary = element("section", "extra-section");
-            glossary.appendChild(element("h3", "", `Fortress glossary <small class="text-muted fw-normal">Appendix A terms</small>`));
+            glossary.appendChild(element("h3", "", `${t("Fortress glossary")} <small class="text-muted fw-normal">${t("Appendix A terms")}</small>`));
             const chips = element("div", "extra-chips justify-content-center");
             Object.keys(BOOK.fort).forEach(name => {
                 const chip = element("button", "extra-chip extra-chip-button", name);
@@ -494,20 +494,20 @@
         if (!holder) return;
         const select = element("select", "form-select w-auto d-inline-block");
         select.id = "extras-settlement-type";
-        SETTLEMENT_TYPES.forEach(([value, text]) => select.appendChild(new Option(text, value)));
+        SETTLEMENT_TYPES.forEach(([value, text]) => select.appendChild(new Option(t(text), value)));
         select.value = pageType;
         select.addEventListener("change", () => {
             pageType = select.value;
             if (encounterUpdateHint) encounterUpdateHint();
         });
-        const label = element("label", "form-label me-2", "Settlement type");
+        const label = element("label", "form-label me-2", t("Settlement type"));
         label.htmlFor = select.id;
         holder.append(label, select);
     }
 
     window.formatExtrasText = function () {
         if (!extrasLog.length) return [];
-        const lines = ["", "Extras (generated on this page)"];
+        const lines = ["", t("Extras (generated on this page)")];
         extrasLog.forEach(entry => {
             lines.push("", `${entry.title}:`);
             entry.lines.forEach(line => lines.push(line));
@@ -517,6 +517,19 @@
 
     document.addEventListener("DOMContentLoaded", () => {
         annotateTerms();
+        renderTypeSelector();
+        renderExtrasCard();
+    });
+
+    document.addEventListener("i18n:change", () => {
+        document.querySelectorAll(".extras-card").forEach(card => card.remove());
+        document.getElementById("extras-settings")?.replaceChildren();
+        if (modalNode) {
+            bootstrap.Modal.getInstance(modalNode)?.dispose();
+            modalNode.remove();
+            modalNode = null;
+        }
+        document.querySelectorAll(".extra-term").forEach(term => { term.title = t("Extra: click to see the description"); });
         renderTypeSelector();
         renderExtrasCard();
     });

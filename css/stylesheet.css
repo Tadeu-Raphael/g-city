@@ -791,3 +791,24 @@
     }
 
 }
+
+/* Language switcher */
+.flag-button {
+    padding: 2px;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    background: none;
+    line-height: 0;
+    opacity: 0.55;
+    cursor: pointer;
+    transition: opacity 0.15s, border-color 0.15s;
+}
+
+.flag-button:hover,
+.flag-button[aria-pressed="true"] {
+    opacity: 1;
+}
+
+.flag-button[aria-pressed="true"] {
+    border-color: #6f42c1;
+}

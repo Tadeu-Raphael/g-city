@@ -11,6 +11,7 @@ async function loadLayoutComponent(containerId, path) {
     }
 
     container.innerHTML = await response.text();
+    if (window.I18N) window.I18N.apply(container);
 }
 
 for (const [containerId, path] of [

@@ -63,7 +63,7 @@ function formatSigned(number) {
 }
 
 function modifierLabel(name) {
-    return MODIFIER_LABELS[name] || name;
+    return t(MODIFIER_LABELS[name] || name);
 }
 
 function fieldLabel(fieldId) {
@@ -110,7 +110,7 @@ function createTable(headers, rows) {
 
     wrapper.className = "table-responsive";
     table.className = "table table-sm table-striped align-middle text-center mb-0";
-    headers.forEach(header => head.appendChild(createCell("th", header)));
+    headers.forEach(header => head.appendChild(createCell("th", t(header))));
     rows.forEach(values => {
         const row = body.insertRow();
         values.forEach(value => row.appendChild(createCell("td", value)));
@@ -149,41 +149,41 @@ function renderGenerationInfo() {
     const rolls = generationLog.rolls.map(describeRoll);
 
     title.className = "h4 fw-semibold text-center border-bottom pb-2 mb-4 mt-0";
-    title.textContent = "Information";
+    title.textContent = t("Information");
     container.replaceChildren(title);
 
     container.appendChild(createInfoSection(
-        "Applied modifiers",
+        t("Applied modifiers"),
         modifiers.length
             ? createTable(
                 ["Modifier", "Total", "Source"],
                 modifiers.map(item => [item.label, formatSigned(item.total), item.sources.join(", ")])
             )
-            : createEmptyNote("No modifiers were generated in this roll.")
+            : createEmptyNote(t("No modifiers were generated in this roll."))
     ));
 
     container.appendChild(createInfoSection(
-        "Dice rolls",
+        t("Dice rolls"),
         rolls.length
             ? createTable(
                 ["Field", "Die", "Die result", "Modifier", "Total"],
                 rolls.map(item => [item.field, item.dice, item.value, item.modifier, item.total])
             )
-            : createEmptyNote("No rolls were recorded.")
+            : createEmptyNote(t("No rolls were recorded."))
     ));
 }
 
 function formatGenerationInfoText() {
-    const lines = ["Information", "", "Applied modifiers"];
+    const lines = [t("Information"), "", t("Applied modifiers")];
     const modifiers = summarizeModifiers();
 
     if (modifiers.length) {
         modifiers.forEach(item => lines.push(`${item.label}: ${formatSigned(item.total)} - ${item.sources.join(", ")}`));
     } else {
-        lines.push("No modifiers were generated in this roll.");
+        lines.push(t("No modifiers were generated in this roll."));
     }
 
-    lines.push("", "Dice rolls");
+    lines.push("", t("Dice rolls"));
     generationLog.rolls.map(describeRoll).forEach(item => {
         const modifier = item.modifier === "-" ? "" : ` ${item.modifier}`;
         lines.push(`${item.field}: ${item.dice} = ${item.value}${modifier} -> ${item.total}`);
@@ -193,3 +193,4 @@ function formatGenerationInfoText() {
 }
 
 document.addEventListener("DOMContentLoaded", renderGenerationInfo);
+document.addEventListener("i18n:change", renderGenerationInfo);

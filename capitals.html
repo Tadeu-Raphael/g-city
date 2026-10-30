@@ -13,9 +13,9 @@
 <body class="capitals-page generation-page">
     <div id="site-header"></div>
     <nav class="generation-actions container d-flex justify-content-center align-items-center flex-wrap gap-2 my-4" aria-label="Ações da geração">
-        <button class="btn btn-primary generation-button reset-btn" type="button" onclick="window.location.reload()">🎲 Roll again</button>
-        <button class="btn btn-success generation-button" type="button" onclick="exportGeneration()">⬇ Export TXT</button>
-        <a href="index.html" class="btn btn-outline-secondary generation-button menu-button">← Main menu</a>
+        <button class="btn btn-primary generation-button reset-btn" data-i18n type="button" onclick="window.location.reload()">🎲 Roll again</button>
+        <button class="btn btn-success generation-button" data-i18n type="button" onclick="exportGeneration()">⬇ Export TXT</button>
+        <a href="index.html" class="btn btn-outline-secondary generation-button menu-button" data-i18n>← Main menu</a>
     </nav>
 
     <main class="generation-content borders-capitals container card shadow-sm border-0 my-4 p-4 p-md-5">
@@ -111,9 +111,10 @@
             </div>
         </div>
     </main>
-    <section id="generation-info" class="generation-info container card shadow-sm border-0 my-4 p-4 p-md-5" aria-label="Generation information"></section>
+    <section id="generation-info" class="generation-info container card shadow-sm border-0 my-4 p-4 p-md-5" aria-label="Generation information" data-i18n-aria></section>
     <div id="site-footer"></div>
 
+<script src="js/i18n.js" defer></script>
 <script src="js/generation-info.js" defer></script>
 <script src="js/capitals.js" defer></script>
 <script src="js/extras-data.js" defer></script>

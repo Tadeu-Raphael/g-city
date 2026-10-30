@@ -1,7 +1,7 @@
 /* Estilos das páginas do Gcity */
 
 /* Botão Voltar Padrão - Centralizado no topo */
-.towns-page .back-btn {
+.towns-page:not(.generation-page) .back-btn {
     position: fixed;
     top: 20px;
     left: 50%;
@@ -23,14 +23,14 @@
     letter-spacing: 0.5px;
 }
 
-.towns-page .back-btn:hover {
+.towns-page:not(.generation-page) .back-btn:hover {
     transform: translateX(-50%) translateY(-2px);
     box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
     background: linear-gradient(45deg, #764ba2 0%, #667eea 100%);
 }
 
 /* Container padrão para todas as páginas */
-.towns-page .content-container {
+.towns-page:not(.generation-page) .content-container {
     margin-top: 80px; /* Espaço para o botão fixo */
     padding: 30px 40px;
     background: rgba(255, 255, 255, 0.97);
@@ -43,7 +43,7 @@
 }
 
 /* Estilos de tipografia padrão */
-.towns-page h2 {
+.towns-page:not(.generation-page) h2 {
     color: #333;
     font-weight: 700;
     margin-bottom: 15px;
@@ -53,7 +53,7 @@
     font-size: 1.4em;
 }
 
-.towns-page h3 {
+.towns-page:not(.generation-page) h3 {
     color: #555;
     font-weight: 600;
     margin-top: 18px;
@@ -61,7 +61,7 @@
     font-size: 1.15em;
 }
 
-.towns-page p {
+.towns-page:not(.generation-page) p {
     color: #444;
     line-height: 1.7;
     padding: 4px 0;
@@ -69,71 +69,71 @@
 }
 
 /* Títulos de seção com cores temáticas */
-.towns-page .borders-towns h2 {
+.towns-page:not(.generation-page) .borders-towns h2 {
     border-color: #667eea; /* Roxo para towns */
 }
 
-.towns-page .borders-villages h2 {
+.towns-page:not(.generation-page) .borders-villages h2 {
     border-color: #10b981; /* Verde para villages */
 }
 
-.towns-page .borders-trading h2 {
+.towns-page:not(.generation-page) .borders-trading h2 {
     border-color: #f59e0b; /* Laranja para trading posts */
 }
 
 /* Botão Voltar com cores temáticas */
-.towns-page .towns-back-btn {
+.towns-page:not(.generation-page) .towns-back-btn {
     background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
 }
 
-.towns-page .villages-back-btn {
+.towns-page:not(.generation-page) .villages-back-btn {
     background: linear-gradient(45deg, #10b981 0%, #059669 100%);
 }
 
-.towns-page .trading-back-btn {
+.towns-page:not(.generation-page) .trading-back-btn {
     background: linear-gradient(45deg, #f59e0b 0%, #d97706 100%);
 }
 
 /* Animações de hover para botões temáticos */
-.towns-page .towns-back-btn:hover {
+.towns-page:not(.generation-page) .towns-back-btn:hover {
     background: linear-gradient(45deg, #764ba2 0%, #667eea 100%);
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
-.towns-page .villages-back-btn:hover {
+.towns-page:not(.generation-page) .villages-back-btn:hover {
     background: linear-gradient(45deg, #059669 0%, #10b981 100%);
     box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
 }
 
-.towns-page .trading-back-btn:hover {
+.towns-page:not(.generation-page) .trading-back-btn:hover {
     background: linear-gradient(45deg, #d97706 0%, #f59e0b 100%);
     box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
 }
 
 /* Background temático opcional */
-.towns-page.towns-theme-body {
+.towns-page:not(.generation-page).towns-theme-body {
     background: linear-gradient(135deg, #f0f4ff 0%, #e8eaf6 100%);
 }
 
-.towns-page.villages-theme-body {
+.towns-page:not(.generation-page).villages-theme-body {
     background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
 }
 
-.towns-page.trading-theme-body {
+.towns-page:not(.generation-page).trading-theme-body {
     background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
-    .towns-page .content-container {
+    .towns-page:not(.generation-page) .content-container {
         padding: 25px 20px;
     }
     
-    .towns-page h2 {
+    .towns-page:not(.generation-page) h2 {
         font-size: 1.2em;
     }
     
-    .towns-page h3 {
+    .towns-page:not(.generation-page) h3 {
         font-size: 1.05em;
     }
 }
@@ -153,6 +153,11 @@
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+}
+
+.site-header .container-fluid {
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .site-brand {
@@ -208,12 +213,11 @@
 .index-main {
     display: grid;
     place-items: center;
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem;
 }
 
 .index-page .main-menu {
-    width: min(100%, 720px);
-    padding: clamp(1.5rem, 5vw, 3rem);
+    width: min(100%, 600px);
     border-radius: 20px;
     background: white;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
@@ -221,12 +225,14 @@
 }
 
 .index-page .city-card {
-    display: block;
-    padding: 1.5rem;
-    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
     border: 3px solid transparent;
     border-radius: 15px;
     background: #f8f9fa;
+    color: inherit;
     text-decoration: none;
     transition: all 0.3s ease;
 }
@@ -256,16 +262,18 @@
 .index-page .menu-title {
     color: #1e3c72;
     margin-bottom: 1rem;
+    font-size: clamp(1.35rem, 4vw, 1.75rem);
 }
 
 .index-page .menu-description {
     color: #6c757d;
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 .index-page .city-title {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.35rem;
+    font-size: 1.1rem;
 }
 
 .index-page .town-title {
@@ -282,13 +290,18 @@
 
 .index-page .city-description {
     color: #6c757d;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
+    font-size: 0.9rem;
 }
 
 @media (max-width: 640px) {
     .site-header {
         flex-direction: column;
         padding: 1rem;
+    }
+
+    .site-header .container-fluid {
+        flex-direction: column;
     }
 
     .site-navigation {
@@ -311,7 +324,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.trading-page .container {
+.trading-page:not(.generation-page) .container {
     margin-top: 50px;
     background: rgba(255, 255, 255, 0.95);
     border-radius: 15px;
@@ -321,7 +334,7 @@
     border-left: 5px solid #ff8c00;
 }
 
-.trading-page .back-btn {
+.trading-page:not(.generation-page) .back-btn {
     position: absolute;
     top: 20px;
     left: 20px;
@@ -338,12 +351,12 @@
     box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
 }
 
-.trading-page .back-btn:hover {
+.trading-page:not(.generation-page) .back-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(255, 140, 0, 0.5);
 }
 
-.trading-page h2 {
+.trading-page:not(.generation-page) h2 {
     color: #ff8c00;
     font-weight: 700;
     margin-bottom: 20px;
@@ -352,14 +365,14 @@
     display: inline-block;
 }
 
-.trading-page h3 {
+.trading-page:not(.generation-page) h3 {
     color: #555;
     font-weight: 600;
     margin-top: 20px;
     font-size: 1.1em;
 }
 
-.trading-page p {
+.trading-page:not(.generation-page) p {
     color: #666;
     line-height: 1.6;
     padding: 5px 0;
@@ -371,7 +384,7 @@
     padding: 2rem;
 }
 
-.villages-page .container-fluid {
+.villages-page:not(.generation-page) .container-fluid {
     max-width: 900px;
     margin: 0 auto;
     background: white;
@@ -380,19 +393,19 @@
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
-.villages-page h2 {
+.villages-page:not(.generation-page) h2 {
     color: #11998e;
     border-bottom: 3px solid #11998e;
     padding-bottom: 0.5rem;
     margin-top: 2rem;
 }
 
-.villages-page h3 {
+.villages-page:not(.generation-page) h3 {
     color: #495057;
     font-weight: 600;
 }
 
-.villages-page .btn-back {
+.villages-page:not(.generation-page) .btn-back {
     background: linear-gradient(135deg, #28a745 0%, #218838 100%);
     color: white;
     padding: 12px 30px;
@@ -406,18 +419,18 @@
     cursor: pointer;
 }
 
-.villages-page .btn-back:hover {
+.villages-page:not(.generation-page) .btn-back:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
 }
 
-.villages-page p {
+.villages-page:not(.generation-page) p {
     color: #212529;
     line-height: 1.6;
     font-size: 1.05rem;
 }
 
-.towns-page .reset-btn {
+.towns-page:not(.generation-page) .reset-btn {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -434,12 +447,12 @@
     z-index: 1000;
 }
 
-.towns-page .reset-btn:hover {
+.towns-page:not(.generation-page) .reset-btn:hover {
     transform: translateY(-2px) scale(1.05);
     box-shadow: 0 6px 20px rgba(30, 60, 114, 0.5);
 }
 
-.villages-page .reset-btn,
+.villages-page:not(.generation-page) .reset-btn,
 .generic-page .reset-btn {
     position: absolute;
     top: 15px;
@@ -455,12 +468,12 @@
     z-index: 1000;
 }
 
-.villages-page .reset-btn {
+.villages-page:not(.generation-page) .reset-btn {
     background: linear-gradient(45deg, #28a745, #198754);
     box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
 }
 
-.villages-page .reset-btn:hover {
+.villages-page:not(.generation-page) .reset-btn:hover {
     transform: translateY(-2px) scale(1.05);
     box-shadow: 0 6px 20px rgba(40, 167, 69, 0.5);
 }
@@ -511,38 +524,14 @@
 .generation-page {
     min-height: 100vh;
     padding: 1.5rem 1rem 3rem;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
 }
 
-.generation-actions {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin: 0 auto 1.5rem;
-}
-
 .generation-button {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
     min-width: 190px;
-    padding: 0.75rem 1.25rem;
-    border: 0;
-    border-radius: 999px;
-    color: #fff;
-    font: inherit;
-    font-weight: 600;
-    text-decoration: none;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.generation-button:hover {
-    color: #fff;
-    transform: translateY(-2px);
+    transition: transform 0.2s ease;
 }
 
 .generation-button:focus-visible {
@@ -552,32 +541,12 @@
 
 .generation-page .reset-btn {
     position: static;
-    background: linear-gradient(45deg, #667eea, #764ba2);
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.35);
-}
-
-.generation-page .reset-btn:hover {
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
-}
-
-.generation-page .menu-button {
-    background: #495057;
-    box-shadow: 0 4px 15px rgba(73, 80, 87, 0.25);
-}
-
-.generation-page .menu-button:hover {
-    background: #343a40;
-    box-shadow: 0 6px 20px rgba(73, 80, 87, 0.35);
 }
 
 .generation-content {
-    width: 100%;
     max-width: 900px;
-    margin: 0 auto;
-    padding: clamp(1.25rem, 4vw, 2.5rem);
-    background: rgba(255, 255, 255, 0.97);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .generation-content .row {
@@ -592,19 +561,9 @@
 }
 
 .generation-content h2 {
-    display: block;
     max-width: 100%;
-    margin: 2.5rem auto 1rem;
-    padding-bottom: 0.65rem;
-    border-bottom: 3px solid #667eea;
     color: #333;
-    font-size: 1.5rem;
-    font-weight: 700;
     text-align: center;
-}
-
-.generation-content h2:first-of-type {
-    margin-top: 0;
 }
 
 .towns-page .generation-content h2 {
@@ -620,10 +579,7 @@
 }
 
 .generation-content h3 {
-    margin: 1.25rem 0 0.35rem;
     color: #555;
-    font-size: 1.1rem;
-    font-weight: 600;
     text-align: center;
 }
 
@@ -644,20 +600,8 @@
         padding: 1rem 0.75rem 2rem;
     }
 
-    .generation-actions {
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-    }
-
     .generation-button {
         width: 100%;
     }
 
-    .generation-content {
-        padding: 1.25rem 1rem;
-    }
-
-    .generation-content h2 {
-        font-size: 1.3rem;
-    }
 }

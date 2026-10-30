@@ -44,7 +44,8 @@ function exportGeneration() {
         lines.push(...formatExtrasText());
     }
 
-    const file = new Blob(["\uFEFF", `${pageType} Generation\r\n\r\n`, lines.join("\r\n")], {
+    const title = t("{0} Generation").replace("{0}", t(pageType));
+    const file = new Blob(["\uFEFF", `${title}\r\n\r\n`, lines.join("\r\n")], {
         type: "text/plain;charset=utf-8"
     });
     const date = new Date();

@@ -127,14 +127,11 @@ a {
 
 .generator-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem) minmax(0, 1fr);
+    width: min(100%, 46rem);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: stretch;
+    margin: 0 auto;
     gap: 1.5rem;
-}
-
-.generator-slot {
-    display: flex;
-    justify-content: center;
 }
 
 .generator-card {
@@ -277,17 +274,8 @@ a {
     }
 
     .generator-grid {
+        width: min(100%, 22rem);
         grid-template-columns: minmax(0, 1fr);
-    }
-
-    .generator-slot:empty {
-        display: none;
-    }
-
-    .generator-slot {
-        max-width: 22rem;
-        width: 100%;
-        margin: 0 auto;
     }
 
     .site-footer {

@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏰 Spectacular Settlements Generator
+# 🏰 G-City
 
 ### The RPG Settlement Generator
 

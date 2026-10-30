@@ -247,6 +247,45 @@
     outline-offset: 3px;
 }
 
+.index-page .cities-card:hover {
+    border-color: #c2410c;
+}
+
+.index-page .cities-title {
+    color: #c2410c;
+}
+
+.cities-page .generation-content h2,
+.cities-page .generation-info h2 {
+    border-color: #c2410c;
+}
+
+.index-page .capitals-card:hover {
+    border-color: #7c3aed;
+}
+
+.index-page .capitals-title {
+    color: #7c3aed;
+}
+
+.capitals-page .generation-content h2,
+.capitals-page .generation-info h2 {
+    border-color: #7c3aed;
+}
+
+.fortresses-page .generation-content h2,
+.fortresses-page .generation-info h2 {
+    border-color: #475569;
+}
+
+.index-page .fortresses-card:hover {
+    border-color: #475569;
+}
+
+.index-page .fortresses-title {
+    color: #475569;
+}
+
 .index-page .town-card:hover {
     border-color: #1e3c72;
 }

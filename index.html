@@ -19,7 +19,25 @@
                 Escolha um tipo de cidade para gerar:
             </p>
 
-            <div class="row g-3">
+            <div class="row g-3" id="menu-main">
+                <div class="col-12">
+                    <a class="city-card capitals-card card h-100 text-decoration-none" href="capitals.html">
+                        <div class="card-body py-4">
+                            <h2 class="city-title capitals-title card-title fw-semibold">👑 Capitais (Capitals)</h2>
+                            <p class="city-description card-text text-secondary">Os maiores assentamentos, com governo, nobreza, espionagem, exército e muitos distritos</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-12">
+                    <a class="city-card cities-card card h-100 text-decoration-none" href="cities.html">
+                        <div class="card-body py-4">
+                            <h2 class="city-title cities-title card-title fw-semibold">🏰 Cidades Grandes (Cities)</h2>
+                            <p class="city-description card-text text-secondary">Grandes metrópoles divididas em distritos, com política, crime e intrigas</p>
+                        </div>
+                    </a>
+                </div>
+
                 <div class="col-12">
                     <a class="city-card town-card card h-100 text-decoration-none" href="towns.html">
                         <div class="card-body py-4">
@@ -46,6 +64,47 @@
                         </div>
                     </a>
                 </div>
+
+                <div class="col-12">
+                    <a class="city-card fortresses-card card h-100 text-decoration-none" href="#" id="fortresses-open" role="button">
+                        <div class="card-body py-4">
+                            <h2 class="city-title fortresses-title card-title fw-semibold">🛡️ Fortalezas (Fortresses)</h2>
+                            <p class="city-description card-text text-secondary">Keeps, castles e strongholds: estruturas defensivas cumulativas</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div id="menu-fortresses" class="d-none">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <a class="city-card fortresses-card card h-100 text-decoration-none" href="keep.html">
+                            <div class="card-body py-4">
+                                <h2 class="city-title fortresses-title card-title fw-semibold">🏯 Keep</h2>
+                                <p class="city-description card-text text-secondary">Apenas a torre principal da fortaleza</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-12">
+                        <a class="city-card fortresses-card card h-100 text-decoration-none" href="castle.html">
+                            <div class="card-body py-4">
+                                <h2 class="city-title fortresses-title card-title fw-semibold">🏰 Castle</h2>
+                                <p class="city-description card-text text-secondary">Keep mais muralhas, torres, fosso e demais elementos do castelo</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-12">
+                        <a class="city-card fortresses-card card h-100 text-decoration-none" href="stronghold.html">
+                            <div class="card-body py-4">
+                                <h2 class="city-title fortresses-title card-title fw-semibold">🛡️ Stronghold</h2>
+                                <p class="city-description card-text text-secondary">Keep e castelo reforçados, com defesas brutais e ampliações de estilo</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-12 text-center">
+                        <button class="btn btn-outline-secondary generation-button" type="button" id="fortresses-back">← Voltar</button>
+                    </div>
+                </div>
             </div>
             </div>
         </section>
@@ -54,5 +113,6 @@
 
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
     <script src="js/layout.js" defer></script>
+    <script src="js/index.js" defer></script>
 </body>
 </html>

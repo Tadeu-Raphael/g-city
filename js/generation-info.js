@@ -21,7 +21,16 @@ const MODIFIER_LABELS = {
     farmsAndResourcesMod: "Farms and Resources",
     populationOverflowMod: "Population Overflow",
     nightActivityMod: "Night Activity",
-    otherLocationsTypeAux: "Other Locations Type"
+    commercialLocationsMod: "Commercial Locations",
+    districtCountMod: "Number of Districts",
+    districtConditionMod: "District Condition",
+    militaryForceMod: "Military Force",
+    residenceMod: "Residence",
+    otherLocationsTypeAux: "Other Locations Type",
+    residentsMod: "Residents",
+    roomsMod: "Number of Rooms",
+    furnishingsMod: "Furnishings",
+    moatMod: "Moat"
 };
 
 function setGenContext(fieldId) {

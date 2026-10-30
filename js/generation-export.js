@@ -1,11 +1,19 @@
 function exportGeneration() {
     const content = document.querySelector(".generation-content");
+    const figures = content.querySelectorAll(".fortress-figure");
+    figures.forEach(item => { item.style.display = "none"; });
     const lines = [];
     const pageType = document.body.classList.contains("villages-page")
         ? "Village"
         : document.body.classList.contains("towns-page")
             ? "Town"
-            : "Trading Post";
+            : document.body.classList.contains("cities-page")
+                ? "City"
+                : document.body.classList.contains("capitals-page")
+                    ? "Capital"
+                    : document.body.classList.contains("fortresses-page")
+                        ? { keep: "Keep", castle: "Castle", stronghold: "Stronghold" }[document.body.dataset.fortress]
+                        : "Trading Post";
 
     for (const heading of content.querySelectorAll("h2")) {
         lines.push(heading.innerText.trim());
@@ -23,6 +31,8 @@ function exportGeneration() {
 
         lines.push("");
     }
+
+    figures.forEach(item => { item.style.display = ""; });
 
     if (typeof formatGenerationInfoText === "function") {
         lines.push(...formatGenerationInfoText());

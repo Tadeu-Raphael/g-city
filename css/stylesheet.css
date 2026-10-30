@@ -578,9 +578,49 @@
     border-color: #f59e0b;
 }
 
-.generation-content h3 {
+.generation-content h3,
+.generation-info h3 {
     color: #555;
     text-align: center;
+}
+
+.generation-info {
+    max-width: 900px;
+}
+
+.generation-info h2 {
+    color: #333;
+}
+
+.towns-page .generation-info h2 {
+    border-color: #667eea;
+}
+
+.villages-page .generation-info h2 {
+    border-color: #10b981;
+}
+
+.trading-page .generation-info h2 {
+    border-color: #f59e0b;
+}
+
+.generation-info h3 {
+    margin: 1.5rem 0 0.75rem;
+    font-size: 1.1rem;
+}
+
+.generation-info section:first-of-type h3 {
+    margin-top: 0;
+}
+
+.generation-info p {
+    margin: 0;
+    color: #444;
+    text-align: center;
+}
+
+.generation-info table {
+    font-size: 0.9rem;
 }
 
 .generation-content p {

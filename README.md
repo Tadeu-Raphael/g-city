@@ -10,4 +10,6 @@ The reusable site header and footer are maintained in `components/header/header.
 
 Because the fragments are loaded with `fetch`, run the site through an HTTP server rather than opening HTML files directly. For local testing, run `python -m http.server` from the project directory and open `http://localhost:8000`.
 
-The town, village, and trading post generators each include an **Exportar TXT** button that downloads the current results shown on that page.
+The town, village, and trading post generators each include an **Exportar TXT** button that downloads the current results shown on that page, including the **Informações** summary.
+
+Each generator page also ends with an **Informações** card. `js/generation-info.js` must load before the generator script: the generators call its `rollDie` and `logMod` helpers so the card can list every dice roll (with its modifier and total) and the modifiers that were applied.

@@ -24,6 +24,10 @@ function exportGeneration() {
         lines.push("");
     }
 
+    if (typeof formatGenerationInfoText === "function") {
+        lines.push(...formatGenerationInfoText());
+    }
+
     const file = new Blob(["\uFEFF", `${pageType} Generation\r\n\r\n`, lines.join("\r\n")], {
         type: "text/plain;charset=utf-8"
     });

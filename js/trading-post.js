@@ -43,10 +43,6 @@ function isInRange(x, min, max) {
     return min <= x && x <= max;
 }
 
-function rollDice(diceSize){
-    return (Math.floor(Math.random() * diceSize) + 1);
-}
-
 function displayMessage(element, message) {
     // Criar um elemento <div> para a mensagem
     const messageDiv = document.createElement("div");
@@ -62,8 +58,9 @@ function displayMessage(element, message) {
 }
 
 function originValue(){
+    setGenContext("origin");
     let origin = document.getElementById("origin");
-    let roll = (Math.floor(Math.random() * 8) + 1);
+    let roll = rollDie(8);
     switch(roll){
         case 1:
             origin.innerHTML += "<b>Accidental.</b> The trading post came about due to an accident, such as a caravan breaking down or mistaken directions. What was set up to deal with the accident eventually became the trading post.";
@@ -93,15 +90,16 @@ function originValue(){
 }
 
 function specialityValue(){
+    setGenContext("speciality");
     let speciality = document.getElementById("speciality");
-    let roll = (Math.floor(Math.random() * 6) + 1);
+    let roll = rollDie(6);
     switch(roll){
         case 1:
             speciality.innerHTML += "<b>Atypical Shipping Methods.</b> This trading post is known for having unique and effective ways to move goods.";
             break;
         case 2:
             speciality.innerHTML += "<b>Food & Drink.</b> This trading post is known for";
-            let innerRoll = (Math.floor(Math.random() * 6) + 1);
+            let innerRoll = rollDie(6);
             switch(true){
                 case isInRange(innerRoll, 1, 3):
                     speciality.innerHTML += " excellent and unique food.";
@@ -122,7 +120,7 @@ function specialityValue(){
             break;
         case 6:
             speciality.innerHTML += "<b>Unscrupulous Contractors.</b> This trading post is known for having people who can get just about anything done, if the coin is right.";
-            let innerRoll2 = (Math.floor(Math.random() * 10) + 1);
+            let innerRoll2 = rollDie(10);
             switch(innerRoll2){
                 case 1:
                     speciality.innerHTML += " (Brutes & Brawlers)";
@@ -160,95 +158,99 @@ function specialityValue(){
 }
 
 function ageValue(){
+    setGenContext("age");
     let age = document.getElementById("age");
-    let roll = (Math.floor(Math.random() * 20) + 1);
+    let roll = rollDie(20);
     switch(true){
         case isInRange(roll, 1, 3):
             age.innerHTML += "<b>Recent.</b> The trading post was established within the past year.";
-            visitorTrafficMod += (-1);
+            visitorTrafficMod += logMod("visitorTrafficMod", (-1));
             break;
         case isInRange(roll, 4, 8):
             age.innerHTML += "<b>Established.</b> The trading post has been around for at least a couple of years.";
             break;
         case isInRange(roll, 9, 13):
             age.innerHTML += "<b>Mature.</b> The trading post was originally built decades ago.";
-            visitorTrafficMod += (1);
+            visitorTrafficMod += logMod("visitorTrafficMod", (1));
             break;
         case isInRange(roll, 14, 17):
             age.innerHTML += "<b>Old.</b> The trading post was built around a hundred years ago.";
-            visitorTrafficMod += (2);
+            visitorTrafficMod += logMod("visitorTrafficMod", (2));
             break;
         case isInRange(roll, 18, 19):
             age.innerHTML += "<b>Ancient.</b> The trading post was built hundreds of years ago.";
-            visitorTrafficMod += (3);
+            visitorTrafficMod += logMod("visitorTrafficMod", (3));
             break;
         case isInRange(roll, 20, 20):
             age.innerHTML += "<b>Unknown.</b> No one really knows when the trading post was established.";
-            visitorTrafficMod += (4);
+            visitorTrafficMod += logMod("visitorTrafficMod", (4));
             break;
     }
 }
 
 function conditionValue(){
+    setGenContext("condition");
     let condition = document.getElementById("condition");
-    let roll = (Math.floor(Math.random() * 20) + 1);
+    let roll = rollDie(20);
     switch(true){
         case isInRange(roll, 1, 2):
             condition.innerHTML += "<b>Ramshackle.</b> A few of the buildings look to be falling down. There are no formal roads, only trodden paths.";
-            populationWealthMod += (-6);
+            populationWealthMod += logMod("populationWealthMod", (-6));
             break;
         case isInRange(roll, 3, 6):
             condition.innerHTML += "<b>Poor.</b> The buildings and surroundings are rough and dirty. Roads are uneven dirt and dust.";
-            populationWealthMod += (-3);
+            populationWealthMod += logMod("populationWealthMod", (-3));
             break;
         case isInRange(roll, 7, 14):
             condition.innerHTML += "<b>Fair.</b> The buildings are clean and sparsely decorated. Roads are flattened earth, possibly with gravel.";
             break;
         case isInRange(roll, 15, 18):
             condition.innerHTML += "<b>Good.</b> Most of the structures are exceptionally well kept and moderately decorated. Roads are cobblestone or, perhaps, cheap brick.";
-            populationWealthMod += (3);
+            populationWealthMod += logMod("populationWealthMod", (3));
             break;
         case isInRange(roll, 19, 20):
             condition.innerHTML += "<b>Immaculate.</b> The shops and houses are spotless, and well-adorned with tasteful decorations. Roads are made of fine, smooth, well-placed flagstones.";
-            populationWealthMod += (6);
+            populationWealthMod += logMod("populationWealthMod", (6));
             break;
     }
 
 }
 
 function visitorTrafficValue(){
+    setGenContext("visitorTraffic");
     let visitorTraffic = document.getElementById("visitorTraffic");
-    let roll = ((Math.floor(Math.random() * 20) + 1) + visitorTrafficMod);
+    let roll = rollDie(20, visitorTrafficMod, "visitorTrafficMod");
     switch(true){
         case isInRange(roll, 0, 2):
             visitorTraffic.innerHTML += "<b>Vacant.</b> No one seems to be visiting this place.";
-            crimeMod += 2;
+            crimeMod += logMod("crimeMod", 2);
             break;
         case isInRange(roll, 3, 6):
             visitorTraffic.innerHTML += "<b>Groups.</b> Visitors are a rarity, though a few might be around.";
-            sizeMod += 1;
-            crimeMod += 1;
+            sizeMod += logMod("sizeMod", 1);
+            crimeMod += logMod("crimeMod", 1);
             break;
         case isInRange(roll, 7, 14):
             visitorTraffic.innerHTML += "<b>Crowds.</b> It is typical to see some new visitors most days.";
-            sizeMod += 2;
+            sizeMod += logMod("sizeMod", 2);
             break;
         case isInRange(roll, 15, 18):
             visitorTraffic.innerHTML += "<b>Droves.</b> There are lots of new faces on a regular basis.";
-            sizeMod += 3;
-            sizeMod += (-1);
+            sizeMod += logMod("sizeMod", 3);
+            sizeMod += logMod("sizeMod", (-1));
             break;
         case isInRange(roll, 19, 24):
             visitorTraffic.innerHTML += "<b>Masses.</b> New people are everywhere, coming and going at all times.";
-            sizeMod += 4;
-            sizeMod += (-2);
+            sizeMod += logMod("sizeMod", 4);
+            sizeMod += logMod("sizeMod", (-2));
             break;
     }
 }
 
 function sizeValue(){
+    setGenContext("size");
     let size = document.getElementById("size");
-    let roll = ((Math.floor(Math.random() * 20) + 1) + sizeMod);
+    let roll = rollDie(20, sizeMod, "sizeMod");
     switch(true){
         case isInRange(roll, 1, 2):
             size.innerHTML += "<b>Very Small.</b> Up to 20 standing structures.";
@@ -274,8 +276,9 @@ function sizeValue(){
 }
 
 function environmentValue(){
+    setGenContext("environment");
     let environment = document.getElementById("environment");
-    let roll = (Math.floor(Math.random() * 10) + 1);
+    let roll = rollDie(10);
     switch(roll){
         case 1:
             environment.innerHTML += "<b>Coastal.</b> The trading post is near a large body of water, such as a lake or ocean.";
@@ -311,34 +314,36 @@ function environmentValue(){
 }
 
 function residentPopulationValue(){
+    setGenContext("residentPopulation");
     let residentPopulation = document.getElementById("residentPopulation");
-    let roll = (Math.floor(Math.random() * 20) + 1);
+    let roll = rollDie(20);
     switch(true){
         case isInRange(roll, 1, 2):
             residentPopulation.innerHTML += "<b>Nearly Deserted.</b> There are many empty houses and businesses.";
-            crimeMod += (2);
+            crimeMod += logMod("crimeMod", (2));
             break;
         case isInRange(roll, 3, 6):
             residentPopulation.innerHTML += "<b>Sparse.</b> There are some empty houses and businesses.";
-            crimeMod += (1);
+            crimeMod += logMod("crimeMod", (1));
             break;
         case isInRange(roll, 7, 14):
             residentPopulation.innerHTML += "<b>Appropriate.</b> Homes and businesses are comfortably populated.";
             break;
         case isInRange(roll, 15, 18):
             residentPopulation.innerHTML += "<b>Congested.</b> Movement is difficult. Homes and common buildings are often at capacity.";
-            crimeMod += (-1);
+            crimeMod += logMod("crimeMod", (-1));
             break;
         case isInRange(roll, 19, 20):
             residentPopulation.innerHTML += "<b>Overwhelmed.</b> The trading post cannot support this many people. Movement is extremely difficult. Tent and shanty towns have cropped up along the outskirts of the settlement.";
-            crimeMod += (-2);
+            crimeMod += logMod("crimeMod", (-2));
             break;
     }
 }
 
 function demographicsValue(){
+    setGenContext("demographics");
     let demographics = document.getElementById("demographics");
-    let roll = rollDice(20);
+    let roll = rollDie(20);
     switch (true) {
         case isInRange(roll, 1, 5):
             demographics.innerHTML += "<b>Only One.</b> 100% primary race.";
@@ -362,8 +367,9 @@ function demographicsValue(){
 }
 
 function dispositionValue(){
+    setGenContext("disposition");
     let disposition = document.getElementById("disposition");
-    let roll = rollDice(20);
+    let roll = rollDie(20);
 
     const messages = [
         {
@@ -405,8 +411,9 @@ function dispositionValue(){
 }
 
 function lawEnforcementValue(){
+    setGenContext("lawEnforcement");
     let lawEnforcement = document.getElementById("lawEnforcement");
-    let roll = rollDice(20);
+    let roll = rollDie(20);
 
     const messages = [
         {
@@ -440,7 +447,7 @@ function lawEnforcementValue(){
     for (const item of messages) {
         if (isInRange(roll, item.range[0], item.range[1])) {
             foundMessage = item.message;
-            crimeMod += item.crimeMod;
+            crimeMod += logMod("crimeMod", item.crimeMod);
             break;
         }
     }
@@ -453,8 +460,9 @@ function lawEnforcementValue(){
 }
 
 function leadershipValue(){
+    setGenContext("leadership");
     let leadership = document.getElementById("leadership");
-    let roll = rollDice(20);
+    let roll = rollDie(20);
 
     const messages = [
         {
@@ -496,7 +504,7 @@ function leadershipValue(){
         if (isInRange(roll, item.range[0], item.range[1])) {
             foundMessage = item.message;
             if(isInRange(roll, 11, 13)){
-                let innerRoll = rollDice(4);
+                let innerRoll = rollDie(4);
                 const innerMessage = [
                     {
                         range: [1, 1],
@@ -534,42 +542,44 @@ function leadershipValue(){
 }
 
 function populationWealthValue(){
+    setGenContext("populationWealth");
     let populationWealth = document.getElementById("populationWealth");
-    let roll = ((Math.floor(Math.random() * 20) + 1) + populationWealthMod);
+    let roll = rollDie(20, populationWealthMod, "populationWealthMod");
     switch(true){
         case isInRange(roll, -5, 2):
             populationWealth.innerHTML += "<b>Destitute.</b> Most of the population consistently lacks the barest essentials of what they need to survive.";
-            crimeMod += (-4);
-            qualityMod += (-2);
+            crimeMod += logMod("crimeMod", (-4));
+            qualityMod += logMod("qualityMod", (-2));
             break;
         case isInRange(roll, 3, 6):
             populationWealth.innerHTML += "<b>Impoverished.</b> Around half of the population struggles to carve out even a meager existence.";
-            crimeMod += (-2);
-            qualityMod += (-1);
+            crimeMod += logMod("crimeMod", (-2));
+            qualityMod += logMod("qualityMod", (-1));
             break;
         case isInRange(roll, 7, 14):
             populationWealth.innerHTML += "<b>Average.</b> Most of the population have enough to live a modest life.";
             break;
         case isInRange(roll, 15, 17):
             populationWealth.innerHTML += "<b>Prosperous.</b> Most of the population has enough to live a good life and, of them, a fair amount can even live comfortably.";
-            crimeMod += (-1);
+            crimeMod += logMod("crimeMod", (-1));
             break;
         case isInRange(roll, 18, 19):
             populationWealth.innerHTML += "<b>Wealthy.</b> Nearly everyone has what they need to live comfortably, many are able to live well, and some are very prosperous.";
-            crimeMod += (-2);
-            qualityMod += (2);
+            crimeMod += logMod("crimeMod", (-2));
+            qualityMod += logMod("qualityMod", (2));
             break;
         case isInRange(roll, 20, 26):
             populationWealth.innerHTML += "<b>Affluent.</b> Nearly everyone is able to live comfortably, with a significant portion living in luxury.";
-            crimeMod += (-4);
-            qualityMod += (3);
+            crimeMod += logMod("crimeMod", (-4));
+            qualityMod += logMod("qualityMod", (3));
             break;
     }
 }
 
 function crimeValue(){
+    setGenContext("crime");
     let crime = document.getElementById("crime");
-    let roll = rollDice(20) + crimeMod;
+    let roll = rollDie(20, crimeMod, "crimeMod");
 
     const messages = [
         {
@@ -603,7 +613,7 @@ function crimeValue(){
     for (const item of messages) {
         if (isInRange(roll, item.range[0], item.range[1])) {
             foundMessage = item.message;
-            urbanEncounterMod += item.urbanEncounterMod;
+            urbanEncounterMod += logMod("urbanEncounterMod", item.urbanEncounterMod);
             break;
         }
     }
@@ -616,8 +626,9 @@ function crimeValue(){
 }
 
 function shopsValue(){
+    setGenContext("shops");
     let shops = document.getElementById("shops");
-    let sizeRoll = rollDice(8);
+    let sizeRoll = rollDie(8);
     let totalNumberShops;
 
     switch(tradingPostSize){
@@ -763,7 +774,7 @@ function shopsValue(){
 
     let foundMessage = '';
     for(let i = 1; i <= totalNumberShops; i++){
-        let roll = rollDice(100);
+        let roll = rollDie(100);
         for (const item of messages) {
             if (isInRange(roll, item.range[0], item.range[1])) {
                 if(i == totalNumberShops){
@@ -784,7 +795,7 @@ function shopsValue(){
 }
 
 function hiredHelpValue(){
-    let roll = rollDice(12);
+    let roll = rollDie(12);
 
     const messages = [
         {
@@ -813,8 +824,9 @@ function hiredHelpValue(){
 }
 
 function servicesValue(){
+    setGenContext("services");
     let services = document.getElementById("services");
-    let sizeRoll = rollDice(6);
+    let sizeRoll = rollDie(6);
     let totalNumberShops;
 
     switch(tradingPostSize){
@@ -916,7 +928,7 @@ function servicesValue(){
 
     let foundMessage = '';
     for(let i = 1; i <= totalNumberShops; i++){
-        let roll = rollDice(100);
+        let roll = rollDie(100);
         for (const item of messages) {
             if (isInRange(roll, item.range[0], item.range[1])) {
                 if(i == totalNumberShops){
@@ -945,11 +957,12 @@ function servicesValue(){
 }
 
 function placesWorshipValue(){
+    setGenContext("placesWorship");
     let placesWorship = document.getElementById("placesWorship");
-    let roll = rollDice(6);
+    let roll = rollDie(6);
     if(isInRange(roll, 4, 6)){
 
-        let rollSize = rollDice(20);
+        let rollSize = rollDie(20);
 
         const messages = [
             {
@@ -986,7 +999,7 @@ function placesWorshipValue(){
             }
         }
 
-        let rollFervency = rollDice(20);
+        let rollFervency = rollDie(20);
 
         const messagesFervency = [
             {
@@ -1022,7 +1035,7 @@ function placesWorshipValue(){
             }
         }
 
-        let rollAlignment = rollDice(10);
+        let rollAlignment = rollDie(10);
 
         const messagesAlignment = [
             {
@@ -1064,8 +1077,9 @@ function placesWorshipValue(){
 }
 
 function recentHistoryValue(){
+    setGenContext("recentHistory");
     let recentHistory = document.getElementById("recentHistory");
-    let roll = (Math.floor(Math.random() * 6) + 1);
+    let roll = rollDie(6);
     switch(roll){
         case 1:
             recentHistory.innerHTML += "<b>Benevolence of yesteryear.</b> The trading post was run by a benevolent leader, or council, but a corrupt individual, or group, has taken over.";
@@ -1090,8 +1104,9 @@ function recentHistoryValue(){
 }
 
 function politicsValue(){
+    setGenContext("politics");
     let politics = document.getElementById("politics");
-    let roll = (Math.floor(Math.random() * 6) + 1);
+    let roll = rollDie(6);
     switch(roll){
         case 1:
             politics.innerHTML += "<b>On the Brink of War.</b> Tension is in the air, and rumors of impending conflict can be heard in hushed tones within the trading post.";
@@ -1114,8 +1129,9 @@ function politicsValue(){
 }   
 
 function eventsValue(){
+    setGenContext("events");
     let events = document.getElementById("events");
-    let roll = (Math.floor(Math.random() * 6) + 1);
+    let roll = rollDie(6);
     switch(roll){
         case 1:
             events.innerHTML += "<b>High-Class Visitor</b> A wealthy aristocrat is passing through and throwing their money around. It seems like anything can be bought, and no price is too high.";
@@ -1139,8 +1155,9 @@ function eventsValue(){
 }
 
 function opportunitiesValue(){
+    setGenContext("opportunities");
     let opportunities = document.getElementById("opportunities");
-    let roll = (Math.floor(Math.random() * 6) + 1);
+    let roll = rollDie(6);
     switch(roll){
         case 1:
             opportunities.innerHTML += "<b>Political Intrigue</b> A locally-known noble has gone missing recently. Perhaps they were traveling through and never made it to their destination? Perhaps no one even saw them leave at all..."
@@ -1163,8 +1180,9 @@ function opportunitiesValue(){
 }
 
 function weatherValue(){
+    setGenContext("weather");
     let weather = document.getElementById("weather");
-    let roll = (Math.floor(Math.random() * 20) + 1);
+    let roll = rollDie(20);
     switch(true){
         case isInRange(roll, 1, 2):
             weather.innerHTML += "<b>Good</b> Unseasonably excellent. A warm day in winter, a cool day in summer, etc."
@@ -1185,8 +1203,9 @@ function weatherValue(){
 }
 
 function dangerLevelValue(){
+    setGenContext("dangerLevel");
     let dangerLevel = document.getElementById("dangerLevel")
-    let roll = (Math.floor(Math.random() * 20) + 1);
+    let roll = rollDie(20);
     switch(true){
         case isInRange(roll, 1 ,2):
             dangerLevel.innerHTML += "<b>Ever-Present</b> The trading post is constantly in peril. Encountering some form of hardship or adversity, when in the area, is almost guaranteed. It is never safe to go anywhere alone. Preparation and caution (even in and around the trading post) are critical."
@@ -1207,8 +1226,9 @@ function dangerLevelValue(){
 }
 
 function dangerTypeValue(){
+    setGenContext("dangerType");
     let dangerType = document.getElementById("dangerType");
-    let roll = (Math.floor(Math.random() * 20) + 1);
+    let roll = rollDie(20);
     switch(true){
     case isInRange(roll, 1 ,2):
         dangerType.innerHTML += "<b>Suspicious Locals</b> Outsiders are often considered untrustworthy, and may be prime suspects in the event of crime."
@@ -1228,8 +1248,9 @@ function dangerTypeValue(){
 }
 
 function dispositionValue(){
+    setGenContext("disposition");
     let disposition = document.getElementById("disposition");
-    let roll = (Math.floor(Math.random() * 20) + 1);
+    let roll = rollDie(20);
     switch(true){
     case isInRange(roll, 1, 2):
         disposition.innerHTML += "<b>Hostile</b> Locals seem very unfriendly toward visitors, and would likely make out-of-towners feel unwelcome. This could manifest as coldness, passive-aggressiveness, or even violence."

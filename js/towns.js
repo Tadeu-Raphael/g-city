@@ -56,10 +56,6 @@ function isInRange(x, min, max) {
     return min <= x && x <= max;
 }
 
-function rollDice(diceSize){
-    return (Math.floor(Math.random() * diceSize) + 1);
-}
-
 function displayMessage(element, message) {
     const messageDiv = document.createElement("div");
     messageDiv.innerHTML = message;
@@ -72,8 +68,9 @@ function displayMessage(element, message) {
 }
 
 function originValue(){
+    setGenContext("origin");
     let origin = document.getElementById("origin");
-    let roll = rollDice(8);
+    let roll = rollDie(8);
 
     const messages = [
         {
@@ -115,7 +112,7 @@ function originValue(){
         if (isInRange(roll, item.range[0], item.range[1])) {
             foundMessage = item.message;
             if(roll == 6){
-                let rollPort = rollDice(6);
+                let rollPort = rollDie(6);
                 if(isInRange(rollPort, 1, 3)){
                     foundMessage += "(Coastal)";
                 } else {
@@ -135,8 +132,9 @@ function originValue(){
 }
 
 function priorityValue(){
+    setGenContext("priority");
     let priority = document.getElementById("priority");
-    let roll = rollDice(6);
+    let roll = rollDie(6);
 
     const messages = [
         {

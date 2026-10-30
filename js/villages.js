@@ -50,36 +50,38 @@ function isInRange(x, min, max) {
 }
 
 function ageValue() {
+    setGenContext("age");
     let age = document.getElementById("age");
-    let roll = (Math.floor(Math.random() * 20) + 1);
+    let roll = rollDie(20);
     switch (true) {
         case isInRange(roll, 1, 5):
             age.innerHTML += "<b>Recent.</b> The village was established within the past year. Those within the village are newly settled.";
-            popDenMod += (-5);
-            hardLikeMod += (-4);
+            popDenMod += logMod("popDenMod", (-5));
+            hardLikeMod += logMod("hardLikeMod", (-4));
             break;
         case isInRange(roll, 6, 10):
             age.innerHTML += "<b>Established.</b> The village has been settled for a few years. They have been able to successfully sustain themselves, and the families have started to grow.";
-            popDenMod += (-2);
-            hardLikeMod += (-2);
+            popDenMod += logMod("popDenMod", (-2));
+            hardLikeMod += logMod("hardLikeMod", (-2));
             break;
         case isInRange(roll, 11, 14):
             age.innerHTML += "<b>Mature.</b> The village has been around close to a decade or so. Production has been honed, and practices are optimized. Children born in the settlement may be old enough to start to lend a hand.";
             break;
         case isInRange(roll, 15, 18):
             age.innerHTML += "<b>Old.</b> The village was founded decades ago. Production has reached peak performance, with the elder members of the community being old hands at the work. There are many adults in the village who were born there.";
-            hardLikeMod += (2);
+            hardLikeMod += logMod("hardLikeMod", (2));
             break;
         case isInRange(roll, 19, 20):
             age.innerHTML += "<b>Ancient.</b> The village was established near to, or more than, a century ago.";
-            hardLikeMod += (4);
+            hardLikeMod += logMod("hardLikeMod", (4));
             break;
     }
 }
 
 function hardshipLikelihoodValue() {
+    setGenContext("hardshipLikelihood");
     let hardship = document.getElementById("hardshipLikelihood");
-    let roll = ((Math.floor(Math.random() * 20) + 1) + hardLikeMod);
+    let roll = rollDie(20, hardLikeMod, "hardLikeMod");
     switch (true) {
         case isInRange(roll, -20, 2):
             hardship.innerHTML += "<b>No Hardship.</b> The village has been lucky, and nothing has troubled it so far.";
@@ -105,63 +107,64 @@ function hardshipLikelihoodValue() {
 }
 
 function hardshipTypeValue() {
+    setGenContext("hardshipType");
     let hardshipType = document.getElementById("hardshipType");
     for (cont = 0; cont < amountHardship; cont++) {
-        let roll = (Math.floor(Math.random() * 8) + 1);
+        let roll = rollDie(8);
         switch (roll) {
             case 1:
                 hardshipType.innerHTML += "<b>Plague.</b> The community fell victim to disease.";
                 hardshipOutcome = hardshipOutcomeValue();
                 hardshipType.innerHTML += " - " + hardshipOutcome[0];
-                popDenMod += hardshipOutcome[1];
+                popDenMod += logMod("popDenMod", hardshipOutcome[1]);
                 break;
             case 2:
                 hardshipType.innerHTML += "<b>Bandits on the Road.</b> On the way to or from market, the villages caravan was set upon by bandits.";
                 hardshipOutcome = hardshipOutcomeValue();
                 hardshipType.innerHTML += " - " + hardshipOutcome[0];
-                popWeaMod += hardshipOutcome[1];
+                popWeaMod += logMod("popWeaMod", hardshipOutcome[1]);
                 break;
             case 3:
                 hardshipType.innerHTML += "<b>Raid.</b> The village was raided by marauders.";
                 hardshipOutcome = hardshipOutcomeValue();
                 hardshipType.innerHTML += " - " + hardshipOutcome[0];
-                sizeMod += hardshipOutcome[1];
-                popDenMod += hardshipOutcome[1];
-                popWeaMod += hardshipOutcome[1];
+                sizeMod += logMod("sizeMod", hardshipOutcome[1]);
+                popDenMod += logMod("popDenMod", hardshipOutcome[1]);
+                popWeaMod += logMod("popWeaMod", hardshipOutcome[1]);
                 break;
             case 4:
                 hardshipType.innerHTML += "<b>Famine / Food Shortage.</b> If the village normally produces some kind of food, it did not produce. If they typically get their food from the market, they had difficulties doing so for a time.";
                 hardshipOutcome = hardshipOutcomeValue();
                 hardshipType.innerHTML += " - " + hardshipOutcome[0];
-                popDenMod += hardshipOutcome[1];
+                popDenMod += logMod("popDenMod", hardshipOutcome[1]);
                 break;
             case 5:
                 hardshipType.innerHTML += "<b>Harsh Weather.</b> The region was beset by natures wrath.";
                 hardshipOutcome = hardshipOutcomeValue();
                 hardshipType.innerHTML += " - " + hardshipOutcome[0];
-                conditionMod += hardshipOutcome[1];
-                sizeMod += hardshipOutcome[1];
+                conditionMod += logMod("conditionMod", hardshipOutcome[1]);
+                sizeMod += logMod("sizeMod", hardshipOutcome[1]);
                 break;
             case 6:
                 hardshipType.innerHTML += "<b>Inter-Community Conflict/Violence.</b> A conflict between members of the community broke out and split the village, with dire consequences.";
                 hardshipOutcome = hardshipOutcomeValue();
                 hardshipType.innerHTML += " - " + hardshipOutcome[0];
-                popDenMod += hardshipOutcome[1];
-                dispotionMod += hardshipOutcome[1];
+                popDenMod += logMod("popDenMod", hardshipOutcome[1]);
+                dispotionMod += logMod("dispotionMod", hardshipOutcome[1]);
                 break;
             case 7:
                 hardshipType.innerHTML += "<b>Loss of Community Leader.</b> A key member of the community died or went missing.";
                 hardshipOutcome = hardshipOutcomeValue();
                 hardshipType.innerHTML += " - " + hardshipOutcome[0];
-                dispotionMod += hardshipOutcome[1];
+                dispotionMod += logMod("dispotionMod", hardshipOutcome[1]);
                 break;
             case 8:
                 hardshipType.innerHTML += "<b>Victim of War.</b> The village was struck by the ravages of war (passing or foraging armies, collateral battle damage, disease from war-related issues such as camp hygiene or illness from dead bodies).";
                 hardshipOutcome = hardshipOutcomeValue();
                 hardshipType.innerHTML += " - " + hardshipOutcome[0];
-                conditionMod += hardshipOutcome[1];
-                sizeMod += hardshipOutcome[1];
-                popDenMod += hardshipOutcome[1];
+                conditionMod += logMod("conditionMod", hardshipOutcome[1]);
+                sizeMod += logMod("sizeMod", hardshipOutcome[1]);
+                popDenMod += logMod("popDenMod", hardshipOutcome[1]);
                 break;
         }
         if (cont != (amountHardship - 1)) {
@@ -174,7 +177,7 @@ function hardshipTypeValue() {
 }
 
 function hardshipOutcomeValue() {
-    let roll = (Math.floor(Math.random() * 10) + 1);
+    let roll = rollDie(10);
     let returnValue = [];
     switch (true) {
         case isInRange(roll, 1, 2):
@@ -202,8 +205,9 @@ function hardshipOutcomeValue() {
 }
 
 function sizeValue() {
+    setGenContext("size");
     let size = document.getElementById("size");
-    let roll = ((Math.floor(Math.random() * 20) + 1) + sizeMod);
+    let roll = rollDie(20, sizeMod, "sizeMod");
     switch (true) {
         case isInRange(roll, -20, 2):
             size.innerHTML += "Very Small. Up to a dozen standing structures.";
@@ -229,34 +233,36 @@ function sizeValue() {
 }
 
 function conditionValue() {
+    setGenContext("condition");
     let condition = document.getElementById("condition");
-    let roll = ((Math.floor(Math.random() * 20) + 1) + conditionMod);
+    let roll = rollDie(20, conditionMod, "conditionMod");
     switch (true) {
         case isInRange(roll, -20, 2):
             condition.innerHTML += "Ruined. The village is little but rubble and debris with, perhaps, a few exceptions. This could have been the result of a war, raid, earthquake, or storm.";
-            popWeaMod += -6;
+            popWeaMod += logMod("popWeaMod", -6);
             break;
         case isInRange(roll, 3, 6):
             condition.innerHTML += "Dilapidated. The village is in a state of disrepair. Some buildings may be coming down, or may have been built in a shoddy fashion. Cleanliness is not a priority.";
-            popWeaMod += -3;
+            popWeaMod += logMod("popWeaMod", -3);
             break;
         case isInRange(roll, 7, 14):
             condition.innerHTML += "Simple. Most buildings are organized and seem sturdy enough, though there is nothing remarkable. The streets are clear enough to move through, but may be uneven and rutted.";
             break;
         case isInRange(roll, 15, 18):
             condition.innerHTML += "Hearty. Everything here appears to be well-built and robust. The village seems mindful of cleanliness and the settlements upkeep. Roads and paths are well-groomed and flattened.";
-            popWeaMod += 3;
+            popWeaMod += logMod("popWeaMod", 3);
             break;
         case isInRange(roll, 19, 20):
             condition.innerHTML += "Immaculate. The village is very well organized, and there is clearly a concerted effort to keep the village in the best shape possible. Cleanliness is a priority, as is maintenance. Roads and paths are plainly surfaced and clean.";
-            popWeaMod += 6;
+            popWeaMod += logMod("popWeaMod", 6);
             break;
     }
 }
 
 function environmentValue() {
+    setGenContext("environment");
     let environment = document.getElementById("environment");
-    let roll = (Math.floor(Math.random() * 10) + 1);
+    let roll = rollDie(10);
     switch (roll) {
         case 1:
             environment.innerHTML += "Coastal. The village is near a large body of water, such as a lake or ocean.";
@@ -292,8 +298,9 @@ function environmentValue() {
 }
 
 function specialtyValue() {
+    setGenContext("specialty");
     let specialty = document.getElementById("specialty");
-    let roll = (Math.floor(Math.random() * 6) + 1);
+    let roll = rollDie(6);
     switch (roll) {
         case 1:
             specialty.innerHTML += "None. The village is unremarkable, or not widely known for any particular thing.";
@@ -317,9 +324,10 @@ function specialtyValue() {
 }
 
 function resourceValue() {
+    setGenContext("resource");
     let resource = document.getElementById("resource");
     let defaultPoints = document.getElementById("defaultPoints");
-    let roll = (Math.floor(Math.random() * 10) + 1);
+    let roll = rollDie(10);
     switch (roll) {
         case 1:
             resource.innerHTML += "Crops. The village is surrounded by fields or orchards that produce wheat, barley, grapes, vegetables, fruit, etc. These are harvested in their raw forms, and the excess is sold or traded.";
@@ -365,8 +373,9 @@ function resourceValue() {
 }
 
 function recentHistoryValue() {
+    setGenContext("recentHistory");
     let recentHistory = document.getElementById("recentHistory");
-    let roll = (Math.floor(Math.random() * 12) + 1);
+    let roll = rollDie(12);
     switch (roll) {
         case 1:
             recentHistory.innerHTML += "Animal Issues. Livestock, or pets, may have been ravaged by local wildlife, or monsters, or animals may have been struck by sickness or pestilence.";
@@ -408,34 +417,36 @@ function recentHistoryValue() {
 }
 
 function populationDensityValue() {
+    setGenContext("populationDensity");
     let populationDensity = document.getElementById("populationDensity");
-    let roll = ((Math.floor(Math.random() * 20) + 1) + popDenMod);
+    let roll = rollDie(20, popDenMod, "popDenMod");
     switch (true) {
         case isInRange(roll, -20, 2):
             populationDensity.innerHTML += "Skeleton. There are only enough people here for the village to function at its most basic level.";
-            crimeMod += 2;
+            crimeMod += logMod("crimeMod", 2);
             break;
         case isInRange(roll, 3, 6):
             populationDensity.innerHTML += "Sparse. People are living here, but not many. They are able to handle all tasks that need doing but, perhaps, with some difficulty.";
-            crimeMod += 1;
+            crimeMod += logMod("crimeMod", 1);
             break;
         case isInRange(roll, 7, 14):
             populationDensity.innerHTML += "Populous. There are enough people here for the village to manage all tasks without difficulty.";
             break;
         case isInRange(roll, 15, 18):
             populationDensity.innerHTML += "Dense. The village seems to have a large amount of people for its size. There are many hands available to help with any work that needs doing.";
-            crimeMod += -1;
+            crimeMod += logMod("crimeMod", -1);
             break;
         case isInRange(roll, 19, 20):
             populationDensity.innerHTML += "Congested. The village has as many people in it as it can hold, and camps may be cropping up on the outskirts. There are plenty of hands available to help with work but, unless the work is very large-scale (such as quarrying), there may be at least some idle people.";
-            crimeMod += -2;
+            crimeMod += logMod("crimeMod", -2);
             break;
     }
 }
 
 function demographicsValue() {
+    setGenContext("demographics");
     let demographics = document.getElementById("demographics");
-    let roll = (Math.floor(Math.random() * 20) + 1);
+    let roll = rollDie(20);
     switch (true) {
         case isInRange(roll, 1, 8):
             demographics.innerHTML += "Only One. 100% primary race.";
@@ -459,8 +470,9 @@ function demographicsValue() {
 }
 
 function dispositionValue() {
+    setGenContext("disposition");
     let disposition = document.getElementById("disposition");
-    let roll = ((Math.floor(Math.random() * 20) + 1) + dispotionMod);
+    let roll = rollDie(20, dispotionMod, "dispotionMod");
     switch (true) {
         case isInRange(roll, -20, 2):
             disposition.innerHTML += "Hostile. Locals seem very unfriendly toward visitors, and would likely make out-of-towners feel unwelcome. This could manifest as coldness, passive-aggressiveness, or even violence.";
@@ -481,34 +493,36 @@ function dispositionValue() {
 }
 
 function lawEnforcementValue() {
+    setGenContext("lawEnforcement");
     let lawEnforcement = document.getElementById("lawEnforcement");
-    let roll = (Math.floor(Math.random() * 20) + 1);
+    let roll = rollDie(20);
     switch (true) {
         case isInRange(roll, 1, 3):
             lawEnforcement.innerHTML += "None. This could be good or bad, depending on ones point of view. Good if the folk are honest enough that policing is unnecessary, but bad when you need to call for help.";
-            crimeMod += -2;
+            crimeMod += logMod("crimeMod", -2);
             break;
         case isInRange(roll, 4, 10):
             lawEnforcement.innerHTML += "Disorganized Rabble. The quintessential village mob, with little to no organization. This is usually formed on the spur-of-the-moment to address a particular issue.";
-            crimeMod += -1;
+            crimeMod += logMod("crimeMod", -1);
             break;
         case isInRange(roll, 11, 14):
             lawEnforcement.innerHTML += "Organized Rabble. Perhaps better than the alternative, this group has guidance and leadership in the form of an individual, or small group. They may or may not be competent.";
             break;
         case isInRange(roll, 15, 18):
             lawEnforcement.innerHTML += "Sheriff. A single, officially sanctioned sheriff looks to maintaining order within the village. If they require additional help, they request it from the villagers, who may assist in a temporary capacity.";
-            crimeMod += 1;
+            crimeMod += logMod("crimeMod", 1);
             break;
         case isInRange(roll, 19, 20):
             lawEnforcement.innerHTML += "Sheriff and Deputies. A sheriff and a handful of deputies, who are officially sanctioned authorities, maintain a firm hold on the village. They maintain civility in an official capacity.";
-            crimeMod += 2;
+            crimeMod += logMod("crimeMod", 2);
             break;
     }
 }
 
 function leadershipValue() {
+    setGenContext("leadership");
     let leadership = document.getElementById("leadership");
-    let roll = (Math.floor(Math.random() * 6) + 1);
+    let roll = rollDie(6);
     switch (roll) {
         case 1:
             leadership.innerHTML += "No Leader. The village operates with no leadership, which could lead to unresolved disputes.";
@@ -532,38 +546,40 @@ function leadershipValue() {
 }
 
 function populationWealthValue() {
+    setGenContext("populationWealth");
     let populationWealth = document.getElementById("populationWealth");
-    let roll = ((Math.floor(Math.random() * 20) + 1) + popWeaMod);
+    let roll = rollDie(20, popWeaMod, "popWeaMod");
     switch (true) {
         case isInRange(roll, -20, 2):
             populationWealth.innerHTML += "Destitute. Most of the population consistently lacks the barest essentials of what they need to survive.";
-            crimeMod += -2;
+            crimeMod += logMod("crimeMod", -2);
             break;
         case isInRange(roll, 3, 6):
             populationWealth.innerHTML += "Impoverished. Around half of the population struggles to carve out even a meager existence.";
-            crimeMod += -1;
+            crimeMod += logMod("crimeMod", -1);
             break;
         case isInRange(roll, 7, 14):
             populationWealth.innerHTML += "Average. Most of the population have enough to live a modest life.";
             break;
         case isInRange(roll, 15, 17):
             populationWealth.innerHTML += "Prosperous. Most of the population has enough to live a good life and, of them, a fair amount can even live comfortably.";
-            crimeMod += -1;
+            crimeMod += logMod("crimeMod", -1);
             break;
         case isInRange(roll, 18, 19):
             populationWealth.innerHTML += "Wealthy. The villagers are well off, perhaps even able to indulge once in a while.";
-            crimeMod += -2;
+            crimeMod += logMod("crimeMod", -2);
             break;
         case isInRange(roll, 20, 40):
             populationWealth.innerHTML += "Affluent. The villagers have plenty of disposable income and want for absolutely nothing.";
-            crimeMod += -3;
+            crimeMod += logMod("crimeMod", -3);
             break;
     }
 }
 
 function crimeValue() {
+    setGenContext("crime");
     let crime = document.getElementById("crime");
-    let roll = ((Math.floor(Math.random() * 20) + 1) + crimeMod);
+    let roll = rollDie(20, crimeMod, "crimeMod");
     switch (true) {
         case isInRange(roll, -20, 2):
             crime.innerHTML += "Average. Theft or violence can happen from time to time. Best to keep an eye out. (+3 Urban Encounter Rolls)";
@@ -581,16 +597,17 @@ function crimeValue() {
 }
 
 function worshipValue(sizeFinal) {
+    setGenContext("worship");
     let worship = document.getElementById("worship");
     switch (true) {
         case isInRange(sizeFinal, 1, 1):
             worshipAmount = 1;
             break;
         case isInRange(sizeFinal, 2, 3):
-            worshipAmount = (Math.floor(Math.random() * 2) + 1);
+            worshipAmount = rollDie(2);
             break;
         case isInRange(sizeFinal, 4, 5):
-            worshipAmount = ((Math.floor(Math.random() * 2) + 1) + 1)
+            worshipAmount = (rollDie(2) + 1)
             break;
     }
     for (cont = 0; cont < worshipAmount; cont++) {
@@ -608,7 +625,7 @@ function worshipValue(sizeFinal) {
 }
 
 function worshipSizeValue() {
-    let roll = (Math.floor(Math.random() * 20) + 1);
+    let roll = rollDie(20);
     switch (true) {
         case isInRange(roll, 1, 1):
             return worshipSize = "Secret. The place of worships size is unclear, as the location is not publicly known.";
@@ -632,7 +649,7 @@ function worshipSizeValue() {
 }
 
 function worshipFervencyValue() {
-    let roll = (Math.floor(Math.random() * 20) + 1);
+    let roll = rollDie(20);
     switch (true) {
         case isInRange(roll, 1, 3):
             return worshipFervency = "Unseen. To those outside the following, it is not clear that the group exists.";
@@ -656,7 +673,7 @@ function worshipFervencyValue() {
 }
 
 function worshipAlignmentValue() {
-    let roll = (Math.floor(Math.random() * 10) + 1);
+    let roll = rollDie(10);
     switch (true) {
         case isInRange(roll, 1, 1):
             return worshipAlignment = "Evil";
@@ -671,22 +688,23 @@ function worshipAlignmentValue() {
 }
 
 function placeGatheringValue(sizeFinal) {
+    setGenContext("placeGathering");
     let placeGathering = document.getElementById("placeGathering");
     switch (sizeFinal) {
         case 1:
-            placeGatheringAmount = ((Math.floor(Math.random() * 2) + 1) - 1);
+            placeGatheringAmount = (rollDie(2) - 1);
             break;
         case 2:
             placeGatheringAmount = 1;
             break;
         case 3:
-            placeGatheringAmount = (Math.floor(Math.random() * 2) + 1);
+            placeGatheringAmount = rollDie(2);
             break;
         case 4:
-            placeGatheringAmount = (Math.floor(Math.random() * 2) + 1);
+            placeGatheringAmount = rollDie(2);
             break;
         case 5:
-            placeGatheringAmount = ((Math.floor(Math.random() * 2) + 1) + 1);
+            placeGatheringAmount = (rollDie(2) + 1);
             break;
     }
     for (cont = 0; cont < placeGatheringAmount; cont++) {
@@ -702,7 +720,7 @@ function placeGatheringValue(sizeFinal) {
 }
 
 function placeGatheringTypeValue() {
-    let roll = (Math.floor(Math.random() * 4) + 1);
+    let roll = rollDie(4);
     switch (roll) {
         case 1:
             return "Amphitheater. Outdoor space with a stage and tiered seating.";
@@ -720,22 +738,23 @@ function placeGatheringTypeValue() {
 }
 
 function otherLocationsValue(sizeFinal) {
+    setGenContext("otherLocations");
     let otherLocations = document.getElementById("otherLocations");
     switch (sizeFinal) {
         case 1:
-            otherLocationsAmount = ((Math.floor(Math.random() * 2) + 1) - 1);
+            otherLocationsAmount = (rollDie(2) - 1);
             break;
         case 2:
-            otherLocationsAmount = (Math.floor(Math.random() * 2) + 1);
+            otherLocationsAmount = rollDie(2);
             break;
         case 3:
-            otherLocationsAmount = ((Math.floor(Math.random() * 2) + 1) + 1);
+            otherLocationsAmount = (rollDie(2) + 1);
             break;
         case 4:
-            otherLocationsAmount = (Math.floor(Math.random() * 2) + 1) + (Math.floor(Math.random() * 2) + 1);
+            otherLocationsAmount = rollDie(2) + rollDie(2);
             break;
         case 5:
-            otherLocationsAmount = ((Math.floor(Math.random() * 2) + 1) + (Math.floor(Math.random() * 2) + 1) + 1);
+            otherLocationsAmount = (rollDie(2) + rollDie(2) + 1);
             break;
     }
     for (cont = 0; cont < otherLocationsAmount; cont++) {
@@ -751,7 +770,7 @@ function otherLocationsValue(sizeFinal) {
 }
 
 function otherLocationsTypeValue(otherLocationsTypeAux) {
-    let roll = ((Math.floor(Math.random() * 100) + 1) + otherLocationsTypeAux);
+    let roll = rollDie(100, otherLocationsTypeAux, "otherLocationsTypeAux");
     if (roll == 0) {
         roll++;
     }
@@ -869,8 +888,9 @@ function otherLocationsTypeValue(otherLocationsTypeAux) {
 }
 
 function villageEventsValue() {
+    setGenContext("villageEvents");
     let villageEvents = document.getElementById("villageEvents");
-    let roll = (Math.floor(Math.random() * 10) + 1);
+    let roll = rollDie(10);
     switch (roll) {
         case 1:
             villageEvents.innerHTML += "Birth or Birthday. Blessings are sought for individuals on the day of their birth.";
@@ -906,8 +926,9 @@ function villageEventsValue() {
 }
 
 function villagePoliticalRumorsValue() {
+    setGenContext("villagePoliticalRumors");
     let villagePoliticalRumors = document.getElementById("villagePoliticalRumors");
-    let roll = (Math.floor(Math.random() * 6) + 1);
+    let roll = rollDie(6);
     switch (roll) {
         case 1:
             villagePoliticalRumors.innerHTML += "Mighty Misfortune. Misfortune has fallen upon a prominent figure residing near to, but outside the bounds of, the settlement (stripped of title, robbed, murdered, lost at cards, etc).";
@@ -931,8 +952,9 @@ function villagePoliticalRumorsValue() {
 }
 
 function villageRandomSuperstitionValue() {
+    setGenContext("villageRandomSuperstition");
     let villageRandomSuperstition = document.getElementById("villageRandomSuperstition");
-    let roll = (Math.floor(Math.random() * 20) + 1);
+    let roll = rollDie(20);
     switch (roll) {
         case 1:
             villageRandomSuperstition.innerHTML += "Burying a dead cat under the doorstep is essential for a buildings prosperity.";
@@ -998,8 +1020,9 @@ function villageRandomSuperstitionValue() {
 }
 
 function villageGoingOnValue() {
+    setGenContext("villageGoingOn");
     let villageGoingOn = document.getElementById("villageGoingOn");
-    let roll = (Math.floor(Math.random() * 6) + 1);
+    let roll = rollDie(6);
     switch (roll) {
         case 1:
             villageGoingOn.innerHTML += "Workers Compensation. A worker has been injured on the job, and folks are rushing to help them.";
@@ -1023,8 +1046,9 @@ function villageGoingOnValue() {
 }
 
 function villageOpportunitiesValue() {
+    setGenContext("villageOpportunities");
     let villageOpportunities = document.getElementById("villageOpportunities");
-    let roll = (Math.floor(Math.random() * 6) + 1);
+    let roll = rollDie(6);
     switch (roll) {
         case 1:
             villageOpportunities.innerHTML += "Thief. Someone has been absconding with large amounts of the villages major crop, or resource.";
@@ -1048,8 +1072,9 @@ function villageOpportunitiesValue() {
 }
 
 function villageHarshWeatherValue() {
+    setGenContext("villageHarshWeather");
     let villageHarshWeather = document.getElementById("villageHarshWeather");
-    let roll = (Math.floor(Math.random() * 6) + 1);
+    let roll = rollDie(6);
     switch (roll) {
         case 1:
             villageHarshWeather.innerHTML += "Ideal. Recent conditions have been as good as possible. Work has been able to progress better than usual, and any grown resource may be having a richer yield than normal.";
@@ -1085,8 +1110,9 @@ function villageHarshWeatherValue() {
 }
 
 function villageDangerLevelValue() {
+    setGenContext("villageDangerLevel");
     let villageDangerLevel = document.getElementById("villageDangerLevel");
-    let roll = (Math.floor(Math.random() * 20) + 1);
+    let roll = rollDie(20);
     switch (true) {
         case isInRange(roll, 1, 2):
             villageDangerLevel.innerHTML += "No Danger or Hazards. The village is a perfectly safe place to be (skip danger type table).";
@@ -1108,8 +1134,9 @@ function villageDangerLevelValue() {
 }
 
 function villageDangerTypeValue() {
+    setGenContext("villageDangerType");
     let villageDangerType = document.getElementById("villageDangerType");
-    let roll = (Math.floor(Math.random() * 6) + 1);
+    let roll = rollDie(6);
     if (flagVillageDangerLevel != 1) {
         switch (roll) {
             case 1:

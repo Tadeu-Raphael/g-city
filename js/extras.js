@@ -165,7 +165,10 @@
             const holder = element("div", "extra-result mt-3");
             const button = element("button", "btn btn-sm extra-button", t("🍺 Generate tavern (Tavern Builder)"));
             button.type = "button";
-            button.addEventListener("click", () => { holder.replaceChildren(buildTavern(false)); });
+            button.addEventListener("click", () => {
+                holder.replaceChildren(buildTavern(false));
+                window.I18N.translateGeneratedContent(holder);
+            });
             node.append(button, holder);
         }
         if (base === "Hired Help") {
@@ -258,15 +261,15 @@
         const total = die + mod;
         const box = element("div", "extra-result");
         const lines = [`Encounter check: d20 = ${die} ${signed(mod)} = ${total} (needs ${threshold}+)`];
-        box.appendChild(element("p", "mb-1", `<b>${t("Check")}:</b> d20 = ${die} ${signed(mod)} = <b>${total}</b> (${t("needs")} ${threshold}+)`));
+        box.appendChild(element("p", "mb-1", `<b>${window.I18N.source("Check")}:</b> d20 = ${die} ${signed(mod)} = <b>${total}</b> (${window.I18N.source("needs")} ${threshold}+)`));
 
         if (total < threshold && !force) {
-            box.appendChild(element("p", "mb-0", t("No urban encounter this time.")));
+            box.appendChild(element("p", "mb-0", window.I18N.source("No urban encounter this time.")));
             lines.push("No urban encounter.");
         } else {
             const index = roll(20);
             const enc = BOOK.enc[index - 1];
-            box.appendChild(element("p", "mb-1", `<b>${t("Encounter")} (d20 = ${index}):</b> ${escapeHtml(enc.name)}`));
+            box.appendChild(element("p", "mb-1", `<b>${window.I18N.source("Encounter")} (d20 = ${index}):</b> ${escapeHtml(enc.name)}`));
             box.appendChild(element("p", "mb-0", escapeHtml(enc.text)));
             lines.push(`Encounter (d20 = ${index}): ${enc.name} - ${enc.text}`);
         }
@@ -278,7 +281,7 @@
         const die = roll(20);
         const issue = BOOK.pers.find(p => { const [a, b] = p.range.split("-").map(Number); return die >= a && die <= (b || a); });
         const box = element("div", "extra-result");
-        box.appendChild(element("p", "mb-0", `<b>${t("Personnel issue")} (d20 = ${die}):</b> ${escapeHtml(issue.name)}. ${escapeHtml(issue.text)}`));
+        box.appendChild(element("p", "mb-0", `<b>${window.I18N.source("Personnel issue")} (d20 = ${die}):</b> ${escapeHtml(issue.name)}. ${escapeHtml(issue.text)}`));
         log(t("NPC personnel issue"), [`d20 = ${die}: ${issue.name}. ${issue.text}`]);
         return box;
     }
@@ -302,7 +305,7 @@
         let rerolled = false;
         if (!pool.includes(rumor)) { rumor = pick(pool); rerolled = true; }
         const box = element("div", "extra-result");
-        box.appendChild(element("p", "mb-0", `<b>${t("Rumor")} (d100 = ${die}${rerolled ? ", " + t("rerolled: does not apply to this settlement type") : ""}):</b> ${escapeHtml(rumor.text)}`));
+        box.appendChild(element("p", "mb-0", `<b>${window.I18N.source("Rumor")} (d100 = ${die}${rerolled ? ", " + window.I18N.source("rerolled: does not apply to this settlement type") : ""}):</b> ${escapeHtml(rumor.text)}`));
         log(t("Rumor"), [`d100 = ${die}${rerolled ? " (rerolled)" : ""}: ${rumor.text}`]);
         return box;
     }
@@ -320,9 +323,9 @@
         const reputation = REPUTATION[reputationDie - 1];
         const name = `The ${pick(NAME_FIRST)} ${pickSlash(NAME_SECOND)}`;
         const patronDie = roll(8);
-        const patrons = patronDie <= 2 ? `${t("Few-to-None")} (${Math.max(roll(4) - 1, 0)} ${t("patrons")})` : patronDie <= 6 ? t("Usual Crowd (up to about half capacity)") : t("Crowded");
+        const patrons = patronDie <= 2 ? `${window.I18N.source("Few-to-None")} (${Math.max(roll(4) - 1, 0)} ${window.I18N.source("patrons")})` : patronDie <= 6 ? window.I18N.source("Usual Crowd (up to about half capacity)") : window.I18N.source("Crowded");
         const staffDie = roll(8);
-        const staff = staffDie <= 2 ? t("Short-Staffed") : staffDie <= 6 ? t("Appropriate") : t("Overstaffed");
+        const staff = staffDie <= 2 ? window.I18N.source("Short-Staffed") : staffDie <= 6 ? window.I18N.source("Appropriate") : window.I18N.source("Overstaffed");
         const food = [rollFood("standard"), rollFood("standard")];
         const drinks = [pick(DRINKS_SOFT), pick(DRINKS_ALC), pick(DRINKS_ALC)];
 
@@ -335,7 +338,7 @@
             ["Food", food.map(f => `${f.name} <small class="text-muted">(${f.tier})</small>`).join(", ")],
             ["Drinks", drinks.join(", ")]
         ];
-        box.innerHTML = `<dl class="extra-dl mb-0">${rows.map(([k, v]) => `<dt>${t(k)}</dt><dd>${v}</dd>`).join("")}</dl>`;
+        box.innerHTML = `<dl class="extra-dl mb-0">${rows.map(([k, v]) => `<dt>${window.I18N.source(k)}</dt><dd>${v}</dd>`).join("")}</dl>`;
         if (logIt) {
             log(t("Tavern (Tavern Builder)"), rows.map(([k, v]) => `${k}: ${v.replace(/<[^>]+>/g, "")}`));
         }
@@ -352,7 +355,7 @@
             ["Local writing", pick(WRITING)]
         ];
         const box = element("div", "extra-result");
-        box.innerHTML = `<dl class="extra-dl mb-0">${lines.map(([k, v]) => `<dt>${t(k)}</dt><dd>${v}</dd>`).join("")}</dl>`;
+        box.innerHTML = `<dl class="extra-dl mb-0">${lines.map(([k, v]) => `<dt>${window.I18N.source(k)}</dt><dd>${v}</dd>`).join("")}</dl>`;
         log(t("Scene details"), lines.map(([k, v]) => `${k}: ${v}`));
         return box;
     }
@@ -360,7 +363,7 @@
     function buildHook() {
         const lines = Object.entries(HOOK).map(([k, list]) => [k, pick(list)]);
         const box = element("div", "extra-result");
-        box.innerHTML = `<dl class="extra-dl mb-0">${lines.map(([k, v]) => `<dt>${t(k)}</dt><dd>${v}</dd>`).join("")}</dl>`;
+        box.innerHTML = `<dl class="extra-dl mb-0">${lines.map(([k, v]) => `<dt>${window.I18N.source(k)}</dt><dd>${v}</dd>`).join("")}</dl>`;
         log(t("Adventure hook"), lines.map(([k, v]) => `${k}: ${v}`));
         return box;
     }
@@ -375,7 +378,7 @@
             ["Game", pick(GAME)]
         ];
         const box = element("div", "extra-result");
-        box.innerHTML = `<dl class="extra-dl mb-0">${lines.map(([k, v]) => `<dt>${t(k)}</dt><dd>${v}</dd>`).join("")}</dl>`;
+        box.innerHTML = `<dl class="extra-dl mb-0">${lines.map(([k, v]) => `<dt>${window.I18N.source(k)}</dt><dd>${v}</dd>`).join("")}</dl>`;
         log(t("Local production"), lines.map(([k, v]) => `${k}: ${v}`));
         return box;
     }
@@ -393,6 +396,7 @@
             button.addEventListener("click", () => {
                 const result = builder();
                 if (append) output.prepend(result); else output.replaceChildren(result);
+                window.I18N.translateGeneratedContent(output);
             });
             actions.appendChild(button);
         });
@@ -439,7 +443,10 @@
             [["⚔ Generate encounter", false], ["🎯 Force encounter (no check)", true]].forEach(([text, force]) => {
                 const button = element("button", "btn btn-sm extra-button", t(text));
                 button.type = "button";
-                button.addEventListener("click", () => output.prepend(buildEncounter(force, getMod())));
+                button.addEventListener("click", () => {
+                    output.prepend(buildEncounter(force, getMod()));
+                    window.I18N.translateGeneratedContent(output);
+                });
                 actions.appendChild(button);
             });
             controls.append(label, input);
@@ -522,6 +529,8 @@
     });
 
     document.addEventListener("i18n:change", () => {
+        const generatedResults = [...document.querySelectorAll(".extras-card .extra-output")]
+            .map(output => [...output.childNodes]);
         document.querySelectorAll(".extras-card").forEach(card => card.remove());
         document.getElementById("extras-settings")?.replaceChildren();
         if (modalNode) {
@@ -532,5 +541,9 @@
         document.querySelectorAll(".extra-term").forEach(term => { term.title = t("Extra: click to see the description"); });
         renderTypeSelector();
         renderExtrasCard();
+        document.querySelectorAll(".extras-card .extra-output").forEach((output, index) => {
+            output.replaceChildren(...(generatedResults[index] || []));
+        });
+        window.I18N.translateGeneratedContent(document);
     });
 })();

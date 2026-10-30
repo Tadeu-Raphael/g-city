@@ -15,38 +15,221 @@
         "Trading Posts": "Postos de Comércio",
         "Extras": "Extras",
         "G-City · Settlement generator for RPG adventures": "G-City · Gerador de assentamentos para aventuras de RPG",
+        "Made by": "Feito por",
         "Language": "Idioma",
         "Switch to English": "Mudar para inglês",
         "Switch to Portuguese": "Mudar para português",
 
         // Modifier labels
         "Size": "Tamanho",
-        "Condition": "Condi??o",
-        "Disposition": "Disposi??o",
+        "Condition": "Condição",
+        "Disposition": "Disposição",
         "Population Density": "Densidade populacional",
-        "Population Wealth": "Riqueza da popula??o",
+        "Population Wealth": "Riqueza da população",
         "Hardship Likelihood": "Probabilidade de adversidade",
         "Crime": "Crime",
-        "Visitor Traffic": "Tr?fego de visitantes",
+        "Visitor Traffic": "Tráfego de visitantes",
         "Shop Quality": "Qualidade das lojas",
         "Urban Encounters": "Encontros urbanos",
-        "Fortification": "Fortifica??o",
-        "Law Enforcement": "Aplica??o da lei",
-        "Market Square": "Pra?a do mercado",
+        "Fortification": "Fortificação",
+        "Law Enforcement": "Aplicação da lei",
+        "Market Square": "Praça do mercado",
         "Places of Worship": "Locais de culto",
         "Farms and Resources": "Fazendas e recursos",
-        "Population Overflow": "Excesso de popula??o",
+        "Population Overflow": "Excesso de população",
         "Night Activity": "Atividade noturna",
-        "Commercial Locations": "Locais comerciais",
-        "Number of Districts": "N?mero de distritos",
-        "District Condition": "Condi??o dos distritos",
-        "Military Force": "For?a militar",
-        "Residence": "Resid?ncia",
+        "Number of Districts": "Número de distritos",
+        "District Condition": "Condição dos distritos",
+        "Military Force": "Força militar",
+        "Residence": "Residência",
         "Other Locations Type": "Tipo de outros locais",
         "Residents": "Residentes",
-        "Number of Rooms": "N?mero de c?modos",
-        "Furnishings": "Mobili?rio",
+        "Number of Rooms": "Número de cômodos",
+        "Furnishings": "Mobiliário",
         "Moat": "Fosso",
+
+        // Generated section headings and field labels
+        "Basic Information": "Informações básicas",
+        "Community": "Comunidade",
+        "Points of Interest": "Pontos de interesse",
+        "Extra Intrigue": "Intriga extra",
+        "Origin": "Origem",
+        "Priority": "Prioridade",
+        "Specialty": "Especialidade",
+        "Age": "Idade",
+        "Environment": "Ambiente",
+        "Prosperity": "Prosperidade",
+        "Vendor Stall Acquisition": "Aquisição de barracas",
+        "Merchant Overflow": "Excesso de comerciantes",
+        "Demographics": "Demografia",
+        "Leadership": "Liderança",
+        "Non-Commercial Locations": "Locais não comerciais",
+        "Commercial Locations": "Locais comerciais",
+        "Shops": "Lojas",
+        "Services": "Serviços",
+        "Recent History": "História recente",
+        "Noteworthy Official": "Autoridade notável",
+        "Market Day": "Dia de mercado",
+        "Resident Population": "População residente",
+        "Speciality": "Especialidade",
+        "Politics": "Política",
+        "Events": "Eventos",
+        "Opportunities": "Oportunidades",
+        "Weather": "Clima",
+        "Danger Level": "Nível de perigo",
+        "Danger Type": "Tipo de perigo",
+        "Hardship Type": "Tipo de adversidade",
+        "Resource": "Recurso",
+        "Default": "Padrão",
+        "Worship": "Culto",
+        "Places of Gathering": "Locais de encontro",
+        "Other Locations": "Outros locais",
+        "Political Rumors": "Rumores políticos",
+        "Random Superstition": "Superstição aleatória",
+        "Going On": "O que está acontecendo",
+        "Population Capacity": "Capacidade populacional",
+        "Outside the City": "Arredores da cidade",
+        "Outside the Capital": "Arredores da capital",
+        "Stewardship": "Administração",
+        "General Condition": "Condição geral",
+        "Underground Passages": "Passagens subterrâneas",
+        "General Crime": "Criminalidade geral",
+        "Organized Crime": "Crime organizado",
+        "Beneath the Surface": "Sob a superfície",
+        "Leadership Unity": "Unidade da liderança",
+        "Governing Priority": "Prioridade de governo",
+        "Priority Approach": "Abordagem prioritária",
+        "Priority Success": "Êxito da prioridade",
+        "Leaders": "Líderes",
+        "Spy Network": "Rede de espionagem",
+        "Counterintelligence": "Contraespionagem",
+        "Notable Visitors": "Visitantes notáveis",
+        "Military": "Forças militares",
+        "Nobility": "Nobreza",
+        "Culture": "Cultura",
+        "Government & High Society": "Governo e alta sociedade",
+        "Districts": "Distritos",
+        "Noble Residences": "Residências nobres",
+        "District": "Distrito",
+        "Administration": "Administração",
+        "Arcane": "Arcano",
+        "Botanical": "Botânico",
+        "Craft": "Artesanato",
+        "Docks": "Docas",
+        "Industrial": "Industrial",
+        "Market": "Mercado",
+        "Merchant": "Comerciantes",
+        "Scholar": "Acadêmico",
+        "Slums": "Favelas",
+        "Upper Class": "Classe alta",
+        "Squalid": "Sórdido",
+        "Dilapidated": "Degradado",
+        "Decent": "Razoável",
+        "Impressive": "Impressionante",
+        "Magnificent": "Magnífico",
+        "Dangerous": "Perigoso",
+        "Frequent": "Frequente",
+        "Infrequent": "Infrequente",
+        "Fine": "Refinado",
+        "General": "Geral",
+        "Location in Relation to Settlement": "Localização em relação ao assentamento",
+        "Expense": "Despesa",
+        "Primary Building Material": "Material principal de construção",
+        "Reason for Construction": "Motivo da construção",
+        "Design Theme": "Tema do projeto",
+        "Resource Origin": "Origem dos recursos",
+        "Local Impact": "Impacto local",
+        "Alternate Entries": "Entradas alternativas",
+        "Resident Relations": "Relações com os residentes",
+        "Resident Attitude": "Atitude dos residentes",
+        "Garrison Size": "Tamanho da guarnição",
+        "Garrison Equipment": "Equipamento da guarnição",
+        "Resident Hobbies": "Passatempos dos residentes",
+        "Current Issue": "Problema atual",
+        "Secrets": "Segredos",
+        "History": "História",
+        "Oddities": "Particularidades",
+        "Special Feature": "Característica especial",
+        "Exterior Wall Thickness": "Espessura das muralhas externas",
+        "Shape": "Formato",
+        "Number of Floors": "Número de andares",
+        "Raised Entrance": "Entrada elevada",
+        "Entry Defenses": "Defesas da entrada",
+        "Rooms": "Cômodos",
+        "Geographic Advantages": "Vantagens geográficas",
+        "Style": "Estilo",
+        "Curtain Wall Towers": "Torres da muralha",
+        "Curtain Wall Thickness": "Espessura da muralha externa",
+        "Curtain Wall Height": "Altura da muralha externa",
+        "Barbican": "Barbacã",
+        "Curtain Wall Defenses": "Defesas da muralha externa",
+        "Gatehouses": "Portarias",
+        "Barracks Location": "Localização dos alojamentos",
+        "Bailey Outbuildings": "Edificações do pátio externo",
+        "Additional Curtain Wall Towers": "Torres adicionais da muralha",
+        "Style Amplification": "Ampliação do estilo",
+        "Additional Curtain Wall Thickness": "Espessura adicional da muralha",
+        "Additional Curtain Wall Height": "Altura adicional da muralha",
+        "Brutal Defenses": "Defesas brutais",
+        "Upgraded Fortress": "Fortaleza aprimorada",
+        "Entry": "Entrada",
+        "Housing": "Moradia",
+        "Notable locations": "Locais notáveis",
+        "Keep": "Keep",
+        "Castle": "Castelo",
+        "Stronghold": "Fortaleza",
+        "General Values": "Valores gerais",
+        "Keep Details": "Detalhes da keep",
+        "Castle Details": "Detalhes do castelo",
+        "Stronghold Details": "Detalhes da fortaleza",
+        "Fortress Style": "Estilo da fortaleza",
+        "Walls": "Muralhas",
+        "Towers": "Torres",
+        "Defenses": "Defesas",
+        "Reference": "Referência",
+        "Very Small": "Muito pequeno",
+        "Small": "Pequeno",
+        "Medium": "Médio",
+        "Large": "Grande",
+        "Very Large": "Muito grande",
+        "Excellent": "Excelente",
+        "Good": "Boa",
+        "Fair": "Regular",
+        "Very Poor": "Muito ruim",
+        "Immaculate": "Impecável",
+        "Pristine": "Impecável",
+        "Unknown": "Desconhecido",
+        "Unknown.": "Desconhecido.",
+        "None": "Nenhum",
+        "None.": "Nenhum.",
+        "Yes": "Sim",
+        "Yes.": "Sim.",
+        "No": "Não",
+        "No.": "Não.",
+        "None known.": "Nenhum conhecido.",
+        "Uncommon": "Incomum",
+        "Common": "Comum",
+        "Rare": "Raro",
+        "Very common": "Muito comum",
+        "Very rare": "Muito raro",
+        "High": "Alto",
+        "Low": "Baixo",
+        "Moderate": "Moderado",
+        "Very high": "Muito alto",
+        "Very low": "Muito baixo",
+        "Skeleton": "Esquelética",
+        "Destitute": "Desamparada",
+        "Wealthy": "Rica",
+        "Affluent": "Abastada",
+        "Poor": "Pobre",
+        "Harsh Weather": "Clima severo",
+        "Recent": "Recente",
+        "Ancient": "Antigo",
+        "Friendly": "Amigável",
+        "Open": "Receptivo",
+        "Neutral": "Neutro",
+        "Unfriendly": "Hostil",
+        "Hostile": "Hostil",
 
         // Page titles
         "G-City - RPG Settlement Generator": "G-City - Gerador de Assentamentos de RPG",
@@ -195,7 +378,73 @@
         "Action": "Ação",
         "Item of value": "Item de valor",
         "Clothing": "Vestimenta",
-        "Pet": "Animal de estimação"
+        "Pet": "Animal de estimação",
+        "Baker": "Padeiro",
+        "Butcher": "Açougueiro",
+        "Cooper": "Tanoeiro",
+        "Carpenter": "Carpinteiro",
+        "General Store": "Armazém",
+        "Herbalist": "Herbalista",
+        "Smithy": "Forja",
+        "Tailor": "Alfaiate",
+        "Tanner/Taxidermist": "Curtidor/Taxidermista",
+        "Thatcher": "Telhador",
+        "Wainwright": "Carroceiro",
+        "Weaver": "Tecelão",
+        "Apothecary": "Botica",
+        "Artist": "Artista",
+        "Bank & Exchange": "Banco e câmbio",
+        "Cobbler": "Sapateiro",
+        "Foundry/Smelting": "Fundição",
+        "Mill": "Moinho",
+        "Textile Production": "Produção têxtil",
+        "Shipwright": "Construtor naval",
+        "Rare Botanicals": "Botânicos raros",
+        "Luxury Furnishings": "Mobiliário de luxo",
+        "Rare Libations and Fare": "Bebidas e iguarias raras",
+        "Rare Trade Goods": "Mercadorias raras",
+        "Magic Shop": "Loja de magia",
+        "Barber": "Barbeiro",
+        "Bathhouse": "Casa de banho",
+        "Doctor": "Médico",
+        "House of Leisure": "Casa de lazer",
+        "Inn": "Estalagem",
+        "Club": "Clube",
+        "Soothsayer": "Adivinho",
+        "Stable": "Estábulo",
+        "Hired Help": "Ajudantes contratados",
+        "Academy/University": "Academia/Universidade",
+        "Archives/Library": "Arquivo/Biblioteca",
+        "Schoolhouse": "Escola",
+        "Amphitheater": "Anfiteatro",
+        "Dance Hall": "Salão de dança",
+        "Gathering Hall": "Salão de reuniões",
+        "Outdoor Recreational Area": "Área de lazer ao ar livre",
+        "Chancery": "Chancelaria",
+        "Courthouse": "Tribunal",
+        "Town Hall": "Prefeitura",
+        "Treasury": "Tesouro",
+        "Altar": "Altar",
+        "Oratory": "Oratório",
+        "Sanctuary": "Santuário",
+        "Temple": "Templo",
+        "Great Temple": "Grande templo",
+        "Plains": "Planícies",
+        "Forest": "Floresta",
+        "Desert": "Deserto",
+        "Mountains": "Montanhas",
+        "Hills": "Colinas",
+        "Swamp": "Pântano",
+        "Coastal": "Costeiro",
+        "Underground": "Subterrâneo",
+        "Decree": "Decreto",
+        "Resources": "Recursos",
+        "Trade": "Comércio",
+        "Strategic": "Estratégico",
+        "Religious": "Religioso",
+        "Political": "Político",
+        "Natural": "Natural",
+        "Magic": "Magia"
     };
 
     const DICTIONARIES = { en: {}, pt: PT };
@@ -211,7 +460,54 @@
     let current = detect();
 
     function t(key) {
-        return DICTIONARIES[current][key] ?? key;
+        const exact = DICTIONARIES[current][key];
+        if (exact !== undefined) return exact;
+        if (current !== "pt") return key;
+        const needs = /^(\()?(needs \d+\+)(\))?$/.exec(key);
+        if (needs) return `${needs[1] || ""}necessário ${needs[2].slice(6)}${needs[3] || ""}`;
+        const district = /^District (\d+): (.+)$/.exec(key);
+        if (district) return `${t("District")} ${district[1]}: ${t(district[2])}`;
+        const districtPlural = /^(\d+) districts\.?$/.exec(key);
+        if (districtPlural) return `${districtPlural[1]} distritos.`;
+        return key;
+    }
+
+    const generatedTextKeys = new WeakMap();
+
+    function translateGeneratedContent(root = document) {
+        root.querySelectorAll(".generation-content h2, .generation-content h3").forEach(node => {
+            node.dataset.i18nKey = node.dataset.i18nKey || node.textContent.trim();
+            node.textContent = t(node.dataset.i18nKey);
+        });
+
+        const roots = [
+            root.matches?.(".generation-content") ? root : root.querySelector(".generation-content"),
+            ...root.querySelectorAll(".extras-card, .extra-modal")
+        ].filter(Boolean);
+        if (root.nodeType === Node.ELEMENT_NODE && root.closest(".generation-content, .extras-card, .extra-modal")) {
+            roots.push(root);
+        }
+
+        for (const content of roots) {
+            const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
+            while (walker.nextNode()) {
+                const node = walker.currentNode;
+                const original = generatedTextKeys.get(node) ?? node.nodeValue;
+                if (!generatedTextKeys.has(node)) generatedTextKeys.set(node, original);
+                const trimmed = original.trim();
+                if (!trimmed) continue;
+                const punctuated = /^(.+?)([.,:;!?]+)$/.exec(trimmed);
+                const translated = punctuated && t(punctuated[1]) !== punctuated[1]
+                    ? `${t(punctuated[1])}${punctuated[2]}`
+                    : t(trimmed);
+                if (translated !== trimmed) {
+                    const start = original.indexOf(trimmed);
+                    node.nodeValue = original.slice(0, start) + translated + original.slice(start + trimmed.length);
+                } else if (current === "en") {
+                    node.nodeValue = original;
+                }
+            }
+        }
     }
 
     function apply(root = document) {
@@ -230,6 +526,7 @@
         root.querySelectorAll("[data-lang-switch]").forEach(node => {
             node.setAttribute("aria-pressed", String(node.dataset.langSwitch === current));
         });
+        translateGeneratedContent(root);
         if (root === document) {
             window.I18N.titleKey = window.I18N.titleKey || document.title;
             document.title = t(window.I18N.titleKey);
@@ -245,7 +542,7 @@
         document.dispatchEvent(new CustomEvent("i18n:change", { detail: { lang } }));
     }
 
-    window.I18N = { t, apply, set, get: () => current, titleKey: null };
+    window.I18N = { t, source: key => key, apply, set, get: () => current, titleKey: null, translateGeneratedContent };
     window.t = t;
 
     document.addEventListener("click", event => {

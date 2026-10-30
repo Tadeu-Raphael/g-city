@@ -68,7 +68,9 @@ function modifierLabel(name) {
 
 function fieldLabel(fieldId) {
     const heading = document.getElementById(fieldId)?.previousElementSibling;
-    return heading?.tagName === "H3" ? heading.innerText.trim() : fieldId;
+    return heading?.tagName === "H3"
+        ? t(heading.dataset.i18nKey || heading.innerText.trim())
+        : t(fieldId);
 }
 
 function summarizeModifiers() {

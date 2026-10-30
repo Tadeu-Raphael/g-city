@@ -1,1 +1,1 @@
-document.documentElement.dataset.gcityRepository = "Tadeu-Raphael/gcity.github.io";
+document.documentElement.dataset.gcityRepository = "Tadeu-Raphael/g-city";

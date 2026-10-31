@@ -24,31 +24,36 @@ Se o repositório já foi clonado sem submódulos, inicialize-os com:
 git submodule update --init --recursive
 ```
 
-Inicie um servidor HTTP na pasta raiz:
+Abra `index.html` diretamente no navegador. Para servir o projeto por HTTP local, também é possível iniciar um servidor na pasta raiz:
 
 ```bash
 python -m http.server
 ```
 
-Abra <http://localhost:8000>. O servidor é necessário para carregar os componentes compartilhados da página inicial.
+Depois, abra <http://localhost:8000>.
 
 ## Estrutura do projeto
 
 ```text
 ├── index.html                 # Catálogo e página inicial
-├── components/
-│   ├── header/header.html     # Cabeçalho compartilhado
-│   └── footer/footer.html     # Rodapé compartilhado
-├── css/landing.css            # Estilos da página inicial
-├── js/layout.js               # Carrega cabeçalho e rodapé
+├── assets/icons/lucide/       # Subconjunto local de ícones SVG
+├── css/
+│   ├── landing.css            # Estilos da página inicial
+│   └── paper-ui.css           # Tema visual compartilhado inspirado em papel
+├── js/
+│   └── ui-icons.js            # Substitui emojis da interface por ícones Lucide
 └── generators/
     ├── spectacular-settlements/  # Submódulo do gerador de assentamentos
     └── forbidden-lands/          # Submódulo dos geradores de Forbidden Lands
 ```
 
-Os geradores são projetos independentes; consulte o README de cada submódulo para detalhes de suas páginas e funcionalidades. Para atualizar o catálogo e os submódulos:
+Os geradores são projetos independentes e incluem cópias locais do tema visual e dos ícones, com os respectivos avisos de licença. Nenhum deles carrega layout, CSS, scripts ou imagens do repositório raiz; por isso, cada submódulo pode funcionar sozinho ou dentro do GitHub Pages do G-City. Consulte o README de cada projeto para detalhes de suas páginas e funcionalidades. Para atualizar o catálogo e os submódulos:
 
 ```bash
 git pull --recurse-submodules
 git submodule update --init --recursive
 ```
+
+## Aparência
+
+O catálogo e os geradores usam o tema local `css/paper-ui.css`, adaptado da linguagem visual de papel do [Ephemera](https://github.com/kerrshift/ephemera). Os ícones usam um subconjunto local de SVGs Lucide, funcionando no GitHub Pages e em arquivos locais sem CDN. A integração mantém HTML, CSS e JavaScript estáticos: não exige React, Tailwind, serviços externos ou etapas de build. Os avisos de licença estão em [`licenses/EPHEMERA-MIT.txt`](./licenses/EPHEMERA-MIT.txt) e [`licenses/LUCIDE-ISC.txt`](./licenses/LUCIDE-ISC.txt).

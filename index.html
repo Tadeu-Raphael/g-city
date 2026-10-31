@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-paper="cream">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +7,25 @@
     <meta name="description" content="G-City reúne ferramentas para criar mundos e assentamentos de RPG.">
     <title>G-City — Ferramentas para RPG</title>
     <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="css/paper-ui.css">
 </head>
 
 <body>
     <div class="site-shell" id="top">
-        <div id="site-header"></div>
+        <div id="site-header">
+            <header class="site-header">
+                <div class="header-inner">
+                    <a class="site-brand" href="./" aria-label="G-City, início">
+                        <span aria-hidden="true">🏰</span>
+                        <span>G-City</span>
+                    </a>
+                    <nav class="site-navigation" aria-label="Navegação principal">
+                        <a href="#geradores">Geradores</a>
+                        <a href="#sobre">Sobre</a>
+                    </nav>
+                </div>
+            </header>
+        </div>
 
         <main class="site-main">
             <section class="generator-section" id="geradores" aria-labelledby="generator-heading">
@@ -38,8 +52,16 @@
             </section>
         </main>
 
-        <div id="site-footer"></div>
+        <div id="site-footer">
+            <footer class="site-footer" id="sobre">
+                <p class="footer-caption">G-City · Ferramentas para aventuras de RPG</p>
+                <p class="footer-credit">
+                    Feito por
+                    <a href="https://github.com/Tadeu-Raphael" target="_blank" rel="noopener noreferrer">Tadeu Raphael</a>
+                </p>
+            </footer>
+        </div>
     </div>
-    <script src="js/layout.js" defer></script>
+    <script src="js/ui-icons.js" defer></script>
 </body>
 </html>

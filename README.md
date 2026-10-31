@@ -1,22 +1,54 @@
 # G-City
 
-G-City is a catalog of tools for building tabletop RPG worlds. Generator projects are kept in Git submodules so their source is not duplicated here.
+G-City é um catálogo de ferramentas estáticas para criar cenários e aventuras de RPG. A página inicial reúne os geradores e cada ferramenta é mantida em seu próprio repositório, incluído aqui como submódulo Git.
 
-## Available generators
+## Geradores disponíveis
 
-- [Spectacular Settlements Generator](./generators/spectacular-settlements/index.html) — settlements, from trading posts and villages to cities and fortresses.
+| Gerador | O que cria |
+| --- | --- |
+| [Spectacular Settlements Generator](./generators/spectacular-settlements/index.html) | Postos comerciais, vilas, cidades, capitais e fortalezas, além de encontros, rumores, tavernas e outros extras. Tem interface em inglês e português, registro de rolagens e modificadores e exportação dos resultados em TXT. |
+| [Forbidden Lands Generator](./generators/forbidden-lands/index.html) | Aldeias, masmorras e castelos. Oferece troca de idioma, exportação em TXT, registro de rolagens e rerrolagem de campos. |
 
-## Shared layout
+## Executar localmente
 
-The catalog header and footer live in `components/header/header.html` and `components/footer/footer.html`. `js/layout.js` loads these fragments into the landing page.
+Clone o repositório e inicialize os submódulos:
 
-## Getting started
+```bash
+git clone --recurse-submodules https://github.com/Tadeu-Raphael/gcity.github.io.git
+cd gcity.github.io
+```
 
-Clone the repository with its submodules, or initialize them after cloning:
+Se o repositório já foi clonado sem submódulos, inicialize-os com:
 
 ```bash
 git submodule update --init --recursive
+```
+
+Inicie um servidor HTTP na pasta raiz:
+
+```bash
 python -m http.server
 ```
 
-Open <http://localhost:8000> to browse the catalog.
+Abra <http://localhost:8000>. O servidor é necessário para carregar os componentes compartilhados da página inicial.
+
+## Estrutura do projeto
+
+```text
+├── index.html                 # Catálogo e página inicial
+├── components/
+│   ├── header/header.html     # Cabeçalho compartilhado
+│   └── footer/footer.html     # Rodapé compartilhado
+├── css/landing.css            # Estilos da página inicial
+├── js/layout.js               # Carrega cabeçalho e rodapé
+└── generators/
+    ├── spectacular-settlements/  # Submódulo do gerador de assentamentos
+    └── forbidden-lands/          # Submódulo dos geradores de Forbidden Lands
+```
+
+Os geradores são projetos independentes; consulte o README de cada submódulo para detalhes de suas páginas e funcionalidades. Para atualizar o catálogo e os submódulos:
+
+```bash
+git pull --recurse-submodules
+git submodule update --init --recursive
+```

@@ -1,12 +1,12 @@
 # G-City
 
-G-City é um catálogo de ferramentas estáticas para criar cenários e aventuras de RPG. A página inicial reúne os geradores e cada ferramenta é mantida em seu próprio repositório, incluído aqui como submódulo Git.
+G-City é um catálogo de ferramentas estáticas para criar cenários e aventuras de RPG. A página inicial oferece alternância entre português e inglês e encaminha a preferência aos geradores. Cada ferramenta é mantida em seu próprio repositório, incluído aqui como submódulo Git.
 
 ## Geradores disponíveis
 
 | Gerador | O que cria |
 | --- | --- |
-| [Spectacular Settlements Generator](./generators/spectacular-settlements/index.html) | Postos comerciais, vilas, cidades, capitais e fortalezas, além de encontros, rumores, tavernas e outros extras. Tem interface em inglês e português, registro de rolagens e modificadores e exportação dos resultados em TXT. |
+| [Spectacular Settlements Generator](./generators/spectacular-settlements/index.html) | Postos comerciais, vilas, cidades, capitais e fortalezas, além de encontros, rumores, tavernas e outros extras. Tem interface em inglês e português, registro de rolagens e modificadores e exportação dos resultados em TXT e PDF. |
 | [Forbidden Lands Generator](./generators/forbidden-lands/index.html) | Aldeias, masmorras e castelos. Oferece troca de idioma, exportação em TXT, registro de rolagens e rerrolagem de campos. |
 
 ## Executar localmente

@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#17251f">
-    <meta name="description" content="G-City reúne ferramentas para criar mundos e assentamentos de RPG.">
-    <title>G-City — Ferramentas para RPG</title>
+    <meta
+        name="description"
+        content="G-City reúne ferramentas para criar mundos e assentamentos de RPG."
+        data-i18n-content="metaDescription"
+    >
+    <title data-i18n="pageTitle">G-City — Ferramentas para RPG</title>
     <link rel="stylesheet" href="css/landing.css">
     <link rel="stylesheet" href="css/paper-ui.css">
 </head>
@@ -15,13 +19,13 @@
         <div id="site-header">
             <header class="site-header">
                 <div class="header-inner">
-                    <a class="site-brand" href="./" aria-label="G-City, início">
+                    <a class="site-brand" href="./" aria-label="G-City, início" data-i18n-aria-label="brandAria">
                         <span aria-hidden="true">🏰</span>
                         <span>G-City</span>
                     </a>
-                    <nav class="site-navigation" aria-label="Navegação principal">
-                        <a href="#geradores">Geradores</a>
-                        <a href="#sobre">Sobre</a>
+                    <nav class="site-navigation" aria-label="Navegação principal" data-i18n-aria-label="mainNavigation">
+                        <a href="#geradores" data-i18n="generatorsNav">Geradores</a>
+                        <a href="#sobre" data-i18n="aboutNav">Sobre</a>
                     </nav>
                 </div>
             </header>
@@ -29,24 +33,24 @@
 
         <main class="site-main">
             <section class="generator-section" id="geradores" aria-labelledby="generator-heading">
-                <p class="eyebrow">BIBLIOTECA DE GERADORES</p>
-                <h1 id="generator-heading">Escolha sua ferramenta</h1>
-                <p class="section-description">Explore ferramentas para dar vida ao seu cenário.</p>
+                <p class="eyebrow" data-i18n="library">BIBLIOTECA DE GERADORES</p>
+                <h1 id="generator-heading" data-i18n="heroTitle">Escolha sua ferramenta</h1>
+                <p class="section-description" data-i18n="heroDescription">Explore ferramentas para dar vida ao seu cenário.</p>
 
                 <div class="generator-grid">
-                    <a class="generator-card" href="generators/spectacular-settlements/index.html">
+                    <a class="generator-card" href="generators/spectacular-settlements/index.html" data-generator-link>
                         <span class="card-icon" aria-hidden="true">🏰</span>
-                        <span class="card-category">GERADOR DE CIDADES</span>
-                        <h2>Spectacular Settlements Generator</h2>
-                        <p>Crie postos comerciais, vilas, cidades, capitais e fortalezas para suas aventuras.</p>
-                        <span class="card-action">Abrir gerador <span aria-hidden="true">→</span></span>
+                        <span class="card-category" data-i18n="cityCategory">GERADOR DE CIDADES</span>
+                        <h2 data-i18n="spectacularName">Spectacular Settlements Generator</h2>
+                        <p data-i18n="spectacularDescription">Crie postos comerciais, vilas, cidades, capitais e fortalezas para suas aventuras.</p>
+                        <span class="card-action"><span data-i18n="openGenerator">Abrir gerador</span><span aria-hidden="true">→</span></span>
                     </a>
-                    <a class="generator-card" href="generators/forbidden-lands/index.html">
+                    <a class="generator-card" href="generators/forbidden-lands/index.html" data-generator-link>
                         <span class="card-icon" aria-hidden="true">🌲</span>
-                        <span class="card-category">GERADOR DE AVENTURAS</span>
-                        <h2>Forbidden Lands Generator</h2>
-                        <p>Crie aldeias, masmorras e castelos para suas aventuras em Forbidden Lands.</p>
-                        <span class="card-action">Abrir gerador <span aria-hidden="true">→</span></span>
+                        <span class="card-category" data-i18n="adventuresCategory">GERADOR DE AVENTURAS</span>
+                        <h2 data-i18n="forbiddenName">Forbidden Lands Generator</h2>
+                        <p data-i18n="forbiddenDescription">Crie aldeias, masmorras e castelos para suas aventuras em Forbidden Lands.</p>
+                        <span class="card-action"><span data-i18n="openGenerator">Abrir gerador</span><span aria-hidden="true">→</span></span>
                     </a>
                 </div>
             </section>
@@ -54,14 +58,68 @@
 
         <div id="site-footer">
             <footer class="site-footer" id="sobre">
-                <p class="footer-caption">G-City · Ferramentas para aventuras de RPG</p>
+                <p class="footer-caption" data-i18n="footerCaption">G-City · Ferramentas para aventuras de RPG</p>
                 <p class="footer-credit">
-                    Feito por
+                    <span data-i18n="footerCredit">Feito por</span>
                     <a href="https://github.com/Tadeu-Raphael" target="_blank" rel="noopener noreferrer">Tadeu Raphael</a>
                 </p>
+                <div class="language-switch" role="group" aria-label="Idioma" data-i18n-aria-label="languageSelector">
+                    <button
+                        class="flag-button"
+                        type="button"
+                        data-lang-switch="pt"
+                        aria-label="Mudar para português"
+                        aria-pressed="true"
+                        title="Mudar para português"
+                        data-i18n-aria-label="switchToPortuguese"
+                        data-i18n-title="switchToPortuguese"
+                    >
+                        <svg viewBox="0 0 60 42" width="36" height="25" role="img" aria-label="Brasil" data-i18n-aria-label="flagBrazil">
+                            <rect width="60" height="42" fill="#009b3a"/>
+                            <polygon points="30,5 56,21 30,37 4,21" fill="#fedf00"/>
+                            <circle cx="30" cy="21" r="9" fill="#002776"/>
+                            <path d="M21.5 19.2 Q30 16.5 38.5 23" stroke="#fff" stroke-width="1.6" fill="none"/>
+                        </svg>
+                    </button>
+                    <button
+                        class="flag-button"
+                        type="button"
+                        data-lang-switch="en"
+                        aria-label="Mudar para inglês"
+                        aria-pressed="false"
+                        title="Mudar para inglês"
+                        data-i18n-aria-label="switchToEnglish"
+                        data-i18n-title="switchToEnglish"
+                    >
+                        <svg viewBox="0 0 60 42" width="36" height="25" role="img" aria-label="UK / USA" data-i18n-aria-label="flagEnglish">
+                            <defs>
+                                <clipPath id="flag-left"><rect width="30" height="42"/></clipPath>
+                                <clipPath id="flag-right"><rect x="30" width="30" height="42"/></clipPath>
+                            </defs>
+                            <g clip-path="url(#flag-left)">
+                                <rect width="60" height="42" fill="#012169"/>
+                                <path d="M0 0L60 42M60 0L0 42" stroke="#fff" stroke-width="7"/>
+                                <path d="M0 0L60 42M60 0L0 42" stroke="#c8102e" stroke-width="3"/>
+                                <path d="M30 0V42M0 21H60" stroke="#fff" stroke-width="11"/>
+                                <path d="M30 0V42M0 21H60" stroke="#c8102e" stroke-width="6"/>
+                            </g>
+                            <g clip-path="url(#flag-right)">
+                                <rect x="30" width="30" height="42" fill="#fff"/>
+                                <g fill="#b22234">
+                                    <rect x="30" y="0" width="30" height="3.2"/><rect x="30" y="6.5" width="30" height="3.2"/>
+                                    <rect x="30" y="13" width="30" height="3.2"/><rect x="30" y="19.5" width="30" height="3.2"/>
+                                    <rect x="30" y="26" width="30" height="3.2"/><rect x="30" y="32.5" width="30" height="3.2"/>
+                                    <rect x="30" y="38.8" width="30" height="3.2"/>
+                                </g>
+                                <rect x="30" y="0" width="14" height="22.5" fill="#3c3b6e"/>
+                            </g>
+                        </svg>
+                    </button>
+                </div>
             </footer>
         </div>
     </div>
+    <script src="js/landing-language.js" defer></script>
     <script src="js/ui-icons.js" defer></script>
 </body>
 </html>

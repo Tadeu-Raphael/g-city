@@ -1,59 +1,59 @@
 # G-City
 
-G-City é um catálogo de ferramentas estáticas para criar cenários e aventuras de RPG. A página inicial oferece alternância entre português e inglês e encaminha a preferência aos geradores. Cada ferramenta é mantida em seu próprio repositório, incluído aqui como submódulo Git.
+G-City is a catalog of static tools for creating tabletop RPG settings and adventures. The home page offers a Portuguese/English language toggle and passes the selected language to the generators. Each tool is maintained in its own repository, included here as a Git submodule.
 
-## Geradores disponíveis
+## Available generators
 
-| Gerador | O que cria |
+| Generator | What it creates |
 | --- | --- |
-| [Spectacular Settlements Generator](./generators/spectacular-settlements/index.html) | Postos comerciais, vilas, cidades, capitais e fortalezas, além de encontros, rumores, tavernas e outros extras. Tem interface em inglês e português, registro de rolagens e modificadores e exportação dos resultados em TXT e PDF. |
-| [Forbidden Lands Generator](./generators/forbidden-lands/index.html) | Aldeias, masmorras e castelos. Oferece troca de idioma, exportação em TXT, registro de rolagens e rerrolagem de campos. |
+| [Spectacular Settlements Generator](./generators/spectacular-settlements/index.html) | Trading posts, villages, cities, capitals, and fortresses, as well as encounters, rumors, taverns, and other extras. It has an English and Portuguese interface, a roll and modifier log, and TXT and PDF export. |
+| [Forbidden Lands Generator](./generators/forbidden-lands/index.html) | Villages, dungeons, and castles. It offers language switching, TXT export, a roll log, and field rerolls. |
 
-## Executar localmente
+## Run locally
 
-Clone o repositório e inicialize os submódulos:
+Clone the repository and initialize its submodules:
 
 ```bash
 git clone --recurse-submodules https://github.com/Tadeu-Raphael/gcity.github.io.git
 cd gcity.github.io
 ```
 
-Se o repositório já foi clonado sem submódulos, inicialize-os com:
+If you have already cloned the repository without submodules, initialize them with:
 
 ```bash
 git submodule update --init --recursive
 ```
 
-Abra `index.html` diretamente no navegador. Para servir o projeto por HTTP local, também é possível iniciar um servidor na pasta raiz:
+Open `index.html` directly in your browser. To serve the project over local HTTP, you can also start a server from the root directory:
 
 ```bash
 python -m http.server
 ```
 
-Depois, abra <http://localhost:8000>.
+Then open <http://localhost:8000>.
 
-## Estrutura do projeto
+## Project structure
 
 ```text
-├── index.html                 # Catálogo e página inicial
-├── assets/icons/lucide/       # Subconjunto local de ícones SVG
+├── index.html                 # Catalog and home page
+├── assets/icons/lucide/       # Local subset of Lucide SVG icons
 ├── css/
-│   ├── landing.css            # Estilos da página inicial
-│   └── paper-ui.css           # Tema visual compartilhado inspirado em papel
+│   ├── landing.css            # Home page styles
+│   └── paper-ui.css           # Shared paper-inspired visual theme
 ├── js/
-│   └── ui-icons.js            # Substitui emojis da interface por ícones Lucide
+│   └── ui-icons.js            # Replaces interface emojis with Lucide icons
 └── generators/
-    ├── spectacular-settlements/  # Submódulo do gerador de assentamentos
-    └── forbidden-lands/          # Submódulo dos geradores de Forbidden Lands
+    ├── spectacular-settlements/  # Settlements generator submodule
+    └── forbidden-lands/          # Forbidden Lands generators submodule
 ```
 
-Os geradores são projetos independentes e incluem cópias locais do tema visual e dos ícones, com os respectivos avisos de licença. Nenhum deles carrega layout, CSS, scripts ou imagens do repositório raiz; por isso, cada submódulo pode funcionar sozinho ou dentro do GitHub Pages do G-City. Consulte o README de cada projeto para detalhes de suas páginas e funcionalidades. Para atualizar o catálogo e os submódulos:
+The generators are independent projects and include local copies of the visual theme and icons, along with their respective license notices. None of them load layouts, CSS, scripts, or images from the root repository, so each submodule can run on its own or within G-City's GitHub Pages site. See each project's README for details about its pages and features. To update the catalog and submodules:
 
 ```bash
 git pull --recurse-submodules
 git submodule update --init --recursive
 ```
 
-## Aparência
+## Appearance
 
-O catálogo e os geradores usam o tema local `css/paper-ui.css`, adaptado da linguagem visual de papel do [Ephemera](https://github.com/kerrshift/ephemera). Os ícones usam um subconjunto local de SVGs Lucide, funcionando no GitHub Pages e em arquivos locais sem CDN. A integração mantém HTML, CSS e JavaScript estáticos: não exige React, Tailwind, serviços externos ou etapas de build. Os avisos de licença estão em [`licenses/EPHEMERA-MIT.txt`](./licenses/EPHEMERA-MIT.txt) e [`licenses/LUCIDE-ISC.txt`](./licenses/LUCIDE-ISC.txt).
+The catalog and generators use the local `css/paper-ui.css` theme, adapted from the paper-inspired visual style of [Ephemera](https://github.com/kerrshift/ephemera). The icons use a local subset of Lucide SVGs, which works on GitHub Pages and with local files without a CDN. The integration keeps the HTML, CSS, and JavaScript static: it requires no React, Tailwind, external services, or build steps. License notices are available in [`licenses/EPHEMERA-MIT.txt`](./licenses/EPHEMERA-MIT.txt) and [`licenses/LUCIDE-ISC.txt`](./licenses/LUCIDE-ISC.txt).

@@ -36,7 +36,9 @@ Then open <http://localhost:8000>.
 
 ```text
 ├── index.html                 # Catalog and home page
-├── assets/icons/lucide/       # Local subset of Lucide SVG icons
+├── assets/
+│   ├── brand/                 # G-City logo and favicon
+│   └── icons/lucide/          # Local subset of Lucide SVG icons
 ├── css/
 │   ├── landing.css            # Home page styles
 │   └── paper-ui.css           # Shared paper-inspired visual theme
@@ -56,4 +58,4 @@ git submodule update --init --recursive
 
 ## Appearance
 
-The catalog and generators use the local `css/paper-ui.css` theme, adapted from the paper-inspired visual style of [Ephemera](https://github.com/kerrshift/ephemera). The icons use a local subset of Lucide SVGs, which works on GitHub Pages and with local files without a CDN. The integration keeps the HTML, CSS, and JavaScript static: it requires no React, Tailwind, external services, or build steps. License notices are available in [`licenses/EPHEMERA-MIT.txt`](./licenses/EPHEMERA-MIT.txt) and [`licenses/LUCIDE-ISC.txt`](./licenses/LUCIDE-ISC.txt).
+The catalog and generators use the local `css/paper-ui.css` theme, adapted from the paper-inspired visual style of [Ephemera](https://github.com/kerrshift/ephemera). G-City's logo and SVG favicon live in `assets/brand/`; the icon set uses a local subset of Lucide SVGs, which works on GitHub Pages and with local files without a CDN. The integration keeps the HTML, CSS, and JavaScript static: it requires no React, Tailwind, external services, or build steps. License notices are available in [`licenses/EPHEMERA-MIT.txt`](./licenses/EPHEMERA-MIT.txt) and [`licenses/LUCIDE-ISC.txt`](./licenses/LUCIDE-ISC.txt).

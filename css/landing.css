@@ -51,11 +51,20 @@ a {
 .site-brand {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    color: #1e3c72;
-    font-size: 1.4rem;
-    font-weight: 800;
+    flex: 0 0 auto;
     text-decoration: none;
+}
+
+.site-logo {
+    display: block;
+    width: 10.75rem;
+    height: auto;
+}
+
+.site-brand:focus-visible {
+    border-radius: 3px;
+    outline: 2px solid #426d50;
+    outline-offset: 4px;
 }
 
 .site-navigation {
@@ -288,6 +297,10 @@ a {
     .header-inner {
         flex-direction: column;
         gap: 0.75rem;
+    }
+
+    .site-logo {
+        width: 9.5rem;
     }
 
     .site-navigation {
